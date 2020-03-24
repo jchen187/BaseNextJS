@@ -6,7 +6,9 @@ This repo intends to be a starting point for future projects
 Included with be
 - nextjs
 - react
+- scss modules
 - storybook
+  - scss in storybook
 - eslint
 - pm2 to manage processes
 - yeoman to easily create components
@@ -19,7 +21,9 @@ Included with be
 
 ### Future Considerations
 - react
+- scss modules
 - storybook
+  - scss in storybook
 - eslint
 - pm2 to manage processes
 - yeoman to easily create components
