@@ -12,6 +12,7 @@ Included with be
 - yeoman to easily create components
 - mongodb for search and database related items
 - firebase
+- redux
 
 ### Current Setup
 1. nextjs
@@ -24,6 +25,8 @@ Included with be
 - yeoman to easily create components
 - mongodb for search and database related items
 - firebase
+- redux
+- prismjs
 
 ## Acknowledgement
 1.
