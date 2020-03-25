@@ -18,9 +18,9 @@ Included with be
 
 ### Current Setup
 1. nextjs
+2. react
 
 ### Future Considerations
-- react
 - scss modules
 - storybook
   - scss in storybook
@@ -34,7 +34,8 @@ Included with be
 
 ## Getting Started
 
-npx create-next-app
+1. npx create-next-app OR npm init next-app
+  - make sure name is all lowercase
 
 ## Acknowledgement
 1.
