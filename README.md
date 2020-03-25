@@ -32,5 +32,11 @@ Included with be
 - redux
 - prismjs
 
+## Getting Started
+
+npx create-next-app
+
 ## Acknowledgement
 1.
+
+
