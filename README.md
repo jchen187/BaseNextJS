@@ -32,10 +32,14 @@ Included with be
 - redux
 - prismjs
 
-## Getting Started
-
+## NextJS
 1. npx create-next-app OR npm init next-app
   - make sure name is all lowercase
+
+## Checking Node Modules
+1. npm install -g npm-check-updates
+2. add line to package.json in scripts section
+  - `"checkModules": "ncu"`
 
 ## Acknowledgement
 1.
