@@ -32,7 +32,7 @@ Included with be
 - redux
 - prismjs
 
-## NextJS
+## Setting Up NextJS
 1. npx create-next-app OR npm init next-app
   - make sure name is all lowercase
 
@@ -40,6 +40,20 @@ Included with be
 1. npm install -g npm-check-updates
 2. add line to package.json in scripts section
   - `"checkModules": "ncu"`
+
+## Setting Up Linting
+1. npm install eslint --save-dev
+2. npm audit fix
+  - You might have some packages with low
+3. npx eslint --init
+4. npx eslint yourfile.js
+  - manually lint your file
+
+## Setting Up Storybook
+1.
+
+## Process Management With PM2
+1.
 
 ## Acknowledgement
 1.
