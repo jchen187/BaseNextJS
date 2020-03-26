@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "checkModules": "ncu"
+    "checkModules": "ncu",
+    "lint": "./node_modules/.bin/eslint ./pages",
+    "lintWithNpx": "npx eslint ./pages"
   },
   "dependencies": {
     "next": "9.3.1",

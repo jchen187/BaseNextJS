@@ -48,6 +48,13 @@ Included with be
 3. npx eslint --init
 4. npx eslint yourfile.js
   - manually lint your file
+5. add line to package.json in scripts section
+  - `"lint": "./node_modules/.bin/eslint ./pages"`
+
+      OR
+
+1. add line to package.json in scripts section
+  - `"lint": "npx eslint ./pages"`
 
 ## Setting Up Storybook
 1.
