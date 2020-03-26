@@ -8,7 +8,8 @@
     "start": "next start",
     "checkModules": "ncu",
     "lint": "./node_modules/.bin/eslint ./pages",
-    "lintWithNpx": "npx eslint ./pages"
+    "lintWithNpx": "npx eslint ./pages",
+    "watchLint": "esw --color --watch --changed --ext-js,jsx src"
   },
   "dependencies": {
     "next": "9.3.1",

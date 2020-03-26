@@ -56,6 +56,13 @@ Included with be
 1. add line to package.json in scripts section
   - `"lint": "npx eslint ./pages"`
 
+## Setting Up Linting
+1. npm install -g eslint-watch
+  - make sure you have eslint globally installed
+  - npm i -g eslint eslint-watch
+2. add line to package.json in scripts section
+  - `"watchLint": "esw --color --watch --changed --ext-js,jsx src"`
+
 ## Setting Up Storybook
 1.
 
