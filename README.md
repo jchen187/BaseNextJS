@@ -57,12 +57,24 @@ Included with be
 1. add line to package.json in scripts section
   - `"lint": "npx eslint ./pages"`
 
-## Setting Up Linting
+## Setting Up Lint Watching
 1. npm install -g eslint-watch
   - make sure you have eslint globally installed
   - npm i -g eslint eslint-watch
 2. add line to package.json in scripts section
   - `"watchLint": "esw --color --watch --changed --ext-js,jsx src"`
+
+## Setting Up Global CSS
+1. Create a new `pages/_app.js`
+```
+import './prism.css'
+
+// This default export is required in a new `pages/_app.js` file.
+export default function MyApp({ Component, pageProps }) {
+  return <Component {...pageProps} />
+}
+```
+2. import any additional global styles you need
 
 ## Setting Up SCSS
 There is now built in support for scss
@@ -70,14 +82,12 @@ https://nextjs.org/blog/next-9-3
 https://nextjs.org/docs/basic-features/built-in-css-support
 
 ### NEW
-1. npm install sass (doesnt need to be global)
+1. `npm install --save sass`
 2. Make sure restart your server if you have it running
 3. Very similar to regular CSS components
-Component
-import styles from 'Button.module.scss'
-
-SCSS
-Button.module.scss
+  - Component File
+    `import styles from 'Button.module.scss'`
+  - SCSS File called `Button.module.scss`
 
 ### OLD
 Back then you had to install packages to import .css and .scss files
@@ -85,8 +95,8 @@ https://github.com/zeit/next-plugins/tree/master/packages/next-css
 https://github.com/zeit/next-plugins/tree/master/packages/next-sass
 
 1. Install the relevant packages
-  - npm install --save @zeit/next-css
-  - npm install --save @zeit/next-sass node-sass
+  - `npm install --save @zeit/next-css`
+  - `npm install --save @zeit/next-sass node-sass`
 2. Add a next.config.js to project root
 3. If you need to import both css and scss, you will need another package.
 
@@ -106,6 +116,43 @@ module.exports = withPlugins([
   [sass, {cssModules: true}],
   [css, {cssModules: false}],
 ]);
+```
+
+## Setting Up PrismJS
+
+1. `npm install prismjs`
+2. Download the css file from https://prismjs.com
+  - it seems like we need this file for actual color
+  - https://prismjs.com/download.html#themes=prism-okaidia&languages=markup+css+clike+javascript
+3. Import the global css file in pages/_app.js
+Regardless of how you choose to do it, it is recommended to wrap the code in a pre tag
+
+###Option 1
+Add this code where necessary
+```
+const Prism = require('prismjs');
+
+const code = `var data = 1;`;
+const html = Prism.highlight(code, Prism.languages.javascript, 'javascript');
+
+<pre>
+  <code dangerouslySetInnerHTML={ {__html: html} }/>
+</pre>
+
+```
+
+###Option 2
+Add this code where necessary
+```
+import Prism from 'prismjs';
+
+<pre><code class="language-css">p { color: red }</code></pre>
+```
+
+### Troubleshooting For Option 2
+```
+// Within componentDidMount
+Prism.highlightAll()
 ```
 
 ## Setting Up Storybook
