@@ -1,6 +1,24 @@
 import Head from 'next/head'
+import Prism from 'prismjs';
 
-const Home = () => (
+// not default export, so need the {} and the exact name - make sense if you are exporting a lot of items. how do you differentiate
+import {ButtonWithCSS} from '../components/ButtonWithCSS'
+import {ButtonWithSCSS} from '../components/ButtonWithSCSS'
+
+
+const code = `var data = 1;`;
+
+// Returns a highlighted HTML string
+const html = Prism.highlight(code, Prism.languages.javascript, 'javascript');
+
+class Home extends React.Component {
+  componentDidMount() {
+    // Prism.highlightAll(); // need this to properly color
+    console.log("Prism work");
+  }
+
+  render() {
+    return (
   <div className="container">
     <Head>
       <title>Create Next App</title>
@@ -12,6 +30,36 @@ const Home = () => (
         Welcome to <a href="https://nextjs.org">Next.js!</a>
       </h1>
 
+      CSS
+      <ButtonWithCSS />
+      --------------------
+      SCSS and Some Code
+      <ButtonWithSCSS />
+
+      --------------------
+
+      <pre>
+        <code className="language-javascript">
+          {`var data = 12`}
+        </code>
+      </pre>
+      <pre>
+        <code className="language-css">
+          {"p { color: red }"}
+        </code>
+      </pre>
+      <pre>
+        <code dangerouslySetInnerHTML={ {__html: html} }/>
+      </pre>
+      <pre>
+        {/*<code className="language-javascript">*/}
+
+        <code>{html}</code>
+      </pre>
+      <pre>
+        <code className="language-javascript">Espero que tu recuperes</code>
+      </pre>
+      <pre className="language-javascript">Espero que tu recuperes</pre>
       <p className="description">
         Get started by editing <code>pages/index.js</code>
       </p>
@@ -198,6 +246,6 @@ const Home = () => (
       }
     `}</style>
   </div>
-)
-
+)}
+}
 export default Home

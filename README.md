@@ -143,20 +143,68 @@ const html = Prism.highlight(code, Prism.languages.javascript, 'javascript');
 
 ###Option 2
 Add this code where necessary
+
+I have noticed that if you have Prism.highlightAll() in the same file where you have <pre><code class="....">...</code></pre>, you will run into some weird code styles
 ```
+// Page File
 import Prism from 'prismjs';
 
+componentDidMount() {
+  Prism.highlightAll();
+}
+
+// Component File
 <pre><code class="language-css">p { color: red }</code></pre>
 ```
-
-### Troubleshooting For Option 2
-```
-// Within componentDidMount
-Prism.highlightAll()
-```
+## Move Essential Folders to Src
+By default, all pages are under the page directory. You can now have it nested under src
+https://nextjs.org/blog/next-9-1
 
 ## Setting Up Storybook
-1.
+The process has been streamlined compared to last year in 2019. While you can still do it manually, it is easier if you follow the step below
+
+1. npx -p @storybook/cli sb init
+https://storybook.js.org/docs/guides/guide-react/
+2. npm run storybook
+
+### Issues
+1. React is not defined when import a component.
+  - in the component, add `import React from 'react';`
+
+### Setting Up CSS Modules
+By default, you can import regular css files
+
+### Setting Up Scss Modules
+You need to customize the webpack config. Otherwise you will get this issue if you try to use SCSS Modules. `You may need an appropriate loader to handle this file type`
+
+1. `npm install --save-dev css-loader sass-loader style-loader`
+TODO - check if these are correct
+also node-sass
+@storybook/preset-scss css-loader sass-loader style-loader
+2. Provide a webpack field in main.js -.storybook/main.js
+```
+const path = require('path');
+
+// Export a function. Accept the base config as the only param.
+module.exports = {
+  webpackFinal: async (config, { configType }) => {
+    // `configType` has a value of 'DEVELOPMENT' or 'PRODUCTION'
+    // You can change the configuration based on that.
+    // 'PRODUCTION' is used when building the static version of storybook.
+
+    // Make whatever fine-grained changes you need
+    config.module.rules.push({
+      test: /\.scss$/,
+      use: ['style-loader', 'css-loader', 'sass-loader'],
+      include: path.resolve(__dirname, '../'),
+    });
+
+    // Return the altered config
+    return config;
+  },
+};
+```
+3. Restart your storybook process
 
 ## Process Management With PM2
 1.

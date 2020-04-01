@@ -1,5 +1,5 @@
 //import '../styles.css'
-import '../prism.css'
+import '../styles/prism.css'
 // import "prismjs/themes/prism.css";
 
 // This default export is required in a new `pages/_app.js` file.
