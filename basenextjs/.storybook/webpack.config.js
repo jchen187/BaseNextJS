@@ -20,7 +20,7 @@ module.exports = async ({ config, mode }) => {
               {loader:"sass-loader"}
           ],
       include: /\.module\.scss$/
-    }
+    },
   );
 
   return config;

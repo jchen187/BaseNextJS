@@ -1,0 +1,104 @@
+$font-size: 20px;
+
+.container {
+  position: relative;
+  padding: 15px;
+  border: solid;
+  border-radius: 5px;
+  transition: border-color 0.5s;
+  margin-bottom: 20px;
+  text-align: center;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  &:hover {
+    border-color: #56d256;
+
+    .dot {
+      background-color: red;
+    }
+  }
+}
+
+.dot {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  height: 10px;
+  width: 10px;
+  background-color: #56d256;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.5s;
+}
+
+.title {
+  //text-transform: uppercase;
+  font-size: $font-size;
+  margin: 10px 0 0 0;
+  color: black;
+}
+
+.tag {
+  border: solid;
+  border-radius: 3px;
+  border-color: #56d256;
+  margin: 5px 5px 0 0;
+  padding: 5px;
+  text-transform: uppercase;
+  display: inline-block;
+}
+
+.subtitle {
+  font-size: $font-size * 0.7;
+  margin: 15px 0 5px;
+  color: black;
+}
+
+.content {
+  font-size: $font-size * 0.6;
+  font-family: Verdana, "Helvetica Neue", Helvetica, "Segoe UI", Arial, freesans, sans-serif;
+}
+
+.text {
+  margin: 0;
+}
+
+.codeBlockContainer {
+  font-size: $font-size * 0.8;
+}
+
+.codeBlock {
+  display: inline-block;
+}
+
+.codeBlockOptionContainer {
+  display: inline-block;
+  margin: 10px;
+}
+
+.codeBlockWithinOptions {
+  //display: inline-block;
+  margin: 0 10px;
+  text-align: center;
+  color: red;
+}
+
+.code {
+	background-color: #eee;
+	border: 1px solid #999;
+	display: block;
+	padding: 20px;
+}
+
+$colorMap: (
+  'black': 000,
+);
+
+@each $colorName, $colorValue in $colorMap {
+  .color-#{$colorName} {
+    color: $colorName;
+  }
+}

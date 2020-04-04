@@ -19,18 +19,18 @@ Included with be
 ### Current Setup
 1. nextjs
 2. react
+3. eslint
+4. prismjs
+5. scss modules
+6. storybook
+  - scss in storybook
 
 ### Future Considerations
-- scss modules
-- storybook
-  - scss in storybook
-- eslint
 - pm2 to manage processes
 - yeoman to easily create components
 - mongodb for search and database related items
 - firebase
 - redux
-- prismjs
 
 ## Getting Started
 Unless you want the name to stay as BaseNextJS and basenextjs, you will have to rename all occurrences of the name.
@@ -39,21 +39,21 @@ basenextjs
 package.json
 
 ## Setting Up NextJS
-1. npm init next-app - NEWER
-   npx create-next-app
+1. `npm init next-app - NEWER`
+   `npx create-next-app`
   - make sure name is all lowercase
 
 ## Checking Node Modules
-1. npm install -g npm-check-updates
-2. add line to package.json in scripts section
+1. `npm install -g npm-check-updates`
+2. add line to `package.json` in scripts section
   - `"checkModules": "ncu"`
 
 ## Setting Up Linting
-1. npm install eslint --save-dev
-2. npm audit fix
+1. `npm install eslint --save-dev`
+2. `npm audit fix`
   - You might have some packages with low
-3. npx eslint --init
-4. npx eslint yourfile.js
+3. `npx eslint --init`
+4. `npx eslint yourfile.js`
   - manually lint your file
 5. add line to package.json in scripts section
   - `"lint": "./node_modules/.bin/eslint ./pages"`
@@ -64,9 +64,9 @@ package.json
   - `"lint": "npx eslint ./pages"`
 
 ## Setting Up Lint Watching
-1. npm install -g eslint-watch
+1. `npm install -g eslint-watch`
   - make sure you have eslint globally installed
-  - npm i -g eslint eslint-watch
+  - `npm i -g eslint eslint-watch`
 2. add line to package.json in scripts section
   - `"watchLint": "esw --color --watch --changed --ext-js,jsx src"`
 
@@ -130,10 +130,10 @@ module.exports = withPlugins([
 2. Download the css file from https://prismjs.com
   - it seems like we need this file for actual color
   - https://prismjs.com/download.html#themes=prism-okaidia&languages=markup+css+clike+javascript
-3. Import the global css file in pages/_app.js
+3. Import the global css file in `pages/_app.js`
 Regardless of how you choose to do it, it is recommended to wrap the code in a pre tag
 
-###Option 1
+### Option 1
 Add this code where necessary
 ```
 const Prism = require('prismjs');
@@ -147,7 +147,7 @@ const html = Prism.highlight(code, Prism.languages.javascript, 'javascript');
 
 ```
 
-###Option 2
+### Option 2
 Add this code where necessary
 
 I have noticed that if you have Prism.highlightAll() in the same file where you have <pre><code class="....">...</code></pre>, you will run into some weird code styles
@@ -163,15 +163,22 @@ componentDidMount() {
 <pre><code class="language-css">p { color: red }</code></pre>
 ```
 ## Move Essential Folders to Src
-By default, all pages are under the page directory. You can now have it nested under src
+By default, all pages are under the page directory. You can now have it nested under `src`
 https://nextjs.org/blog/next-9-1
 
 ## Setting Up Storybook
+https://storybook.js.org/docs/guides/guide-react/
 The process has been streamlined compared to last year in 2019. While you can still do it manually, it is easier if you follow the step below
 
-1. npx -p @storybook/cli sb init
-https://storybook.js.org/docs/guides/guide-react/
-2. npm run storybook
+1. `npx -p @storybook/cli sb init`
+2. `npm run storybook`
+3. In `.storybook/main.js`, update the path such that you can pull in stories from `src/components`
+```
+  stories: [
+    '../stories/**/*.stories.js',
+    '../src/components/**/*.stories.js',
+  ],
+```
 
 ### Issues
 1. React is not defined when import a component.
