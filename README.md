@@ -176,14 +176,19 @@ https://storybook.js.org/docs/guides/guide-react/
 ### Issues
 1. React is not defined when import a component.
   - in the component, add `import React from 'react';`
+2. You cannot `import styles from "./styles.scss"` within the stories directory. You can do `import './styles.scss'` though.
+https://stackoverflow.com/questions/48273019/storybook-webpack-will-not-load-scss-files
 
 ### Setting Up CSS Modules
 By default, you can import regular css files. I could not figure out how to get CSS Modules working. It worked with previous versions of storybook. So it is likely due to new versions of some node modules.
+
+However we can set up Scss modules. If you can have scss modules, do you need css modules? Not really.
 
 ### Setting Up Scss Modules
 You need to customize the webpack config. Otherwise you will get this issue if you try to use SCSS Modules. `You may need an appropriate loader to handle this file type`
 
 #### Option 1 - Did Not Work
+https://storybook.js.org/docs/configurations/custom-webpack-config/#full-control-mode
 1. `npm install --save-dev css-loader sass-loader style-loader`
 2. Provide a webpack field in main.js -.storybook/main.js
 ```
@@ -211,6 +216,8 @@ module.exports = {
 3. Restart your storybook process
 
 #### Option 2 - Did Not Work
+https://github.com/storybookjs/presets/tree/master/packages/preset-scss
+
 This only worked for regular css and scss files within the stories directory
 1. `npm install --save @storybook/preset-scss css-loader sass-loader style-loader`
 2. Edit .storybook/main.js
