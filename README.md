@@ -32,6 +32,12 @@ Included with be
 - redux
 - prismjs
 
+## Getting Started
+Unless you want the name to stay as BaseNextJS and basenextjs, you will have to rename all occurrences of the name.
+
+basenextjs
+package.json
+
 ## Setting Up NextJS
 1. npm init next-app - NEWER
    npx create-next-app
@@ -172,15 +178,13 @@ https://storybook.js.org/docs/guides/guide-react/
   - in the component, add `import React from 'react';`
 
 ### Setting Up CSS Modules
-By default, you can import regular css files
+By default, you can import regular css files. I could not figure out how to get CSS Modules working. It worked with previous versions of storybook. So it is likely due to new versions of some node modules.
 
 ### Setting Up Scss Modules
 You need to customize the webpack config. Otherwise you will get this issue if you try to use SCSS Modules. `You may need an appropriate loader to handle this file type`
 
+#### Option 1 - Did Not Work
 1. `npm install --save-dev css-loader sass-loader style-loader`
-TODO - check if these are correct
-also node-sass
-@storybook/preset-scss css-loader sass-loader style-loader
 2. Provide a webpack field in main.js -.storybook/main.js
 ```
 const path = require('path');
@@ -205,6 +209,64 @@ module.exports = {
 };
 ```
 3. Restart your storybook process
+
+#### Option 2 - Did Not Work
+This only worked for regular css and scss files within the stories directory
+1. `npm install --save @storybook/preset-scss css-loader sass-loader style-loader`
+2. Edit .storybook/main.js
+```
+module.exports = {
+  stories: ['../stories/**/*.stories.js'],
+  addons: [
+    '@storybook/addon-actions',
+    '@storybook/addon-links',
+    '@storybook/preset-scss'
+    /*
+    {
+      name: '@storybook/preset-scss',
+      options: {
+        cssLoaderOption: {
+          modules: true,
+        },
+      },
+    },
+    */
+  ],
+```
+
+#### Option 3 - Allowed Scss Modules in Components Only
+1. `npm install --save-dev css-loader sass-loader style-loader`
+2. Create a new file - .storybook/webpack.config.js
+```
+const path = require('path');
+
+// Export a function. Accept the base config as the only param.
+module.exports = async ({ config, mode }) => {
+  config.module.rules.push(
+    {
+      test: /\.scss$/,
+      // Allows for Regular SCSS
+      // use: ['style-loader', 'css-loader', 'sass-loader'],
+
+      // Allows for SCSS Modules
+      use: [
+              { loader: 'style-loader' },
+              {
+                  loader: 'css-loader',
+                  options: {
+                      modules: true,
+                  }
+              },
+              {loader:"sass-loader"}
+          ],
+      // include: path.resolve(__dirname, '../'),
+      include: /\.module\.scss$/
+    }
+  );
+
+  return config;
+};
+```
 
 ## Process Management With PM2
 1.
