@@ -1,14 +1,14 @@
-@import "../../styles/global.scss";
+@import '../../styles/global.scss';
 
 $font-size: 20px;
 
 .container {
-  position: relative;
-  padding: 25px;
   border: solid;
   border-radius: 5px;
-  transition: border-color 0.5s;
   margin-bottom: 20px;
+  padding: 25px;
+  position: relative;
+  transition: border-color 0.5s;
 
   &:last-child {
     margin-bottom: 0;
@@ -55,15 +55,15 @@ $font-size: 20px;
 }
 
 .subtitle {
+  color: black;
   font-size: $font-size * 0.7;
   margin: 15px 0 5px;
-  color: black;
 }
 
 .content {
-  font-size: $font-size * 0.6;
-  font-family: Verdana, "Helvetica Neue", Helvetica, "Segoe UI", Arial, freesans, sans-serif;
   color: gray;
+  font-size: $font-size * 0.6;
+  font-family: Verdana, 'Helvetica Neue', Helvetica, 'Segoe UI', Arial, freesans, sans-serif;
 }
 
 .text {
@@ -71,10 +71,10 @@ $font-size: 20px;
 }
 
 .code {
-	background-color: #eee;
-	border: 1px solid #999;
-	display: block;
-	padding: 20px;
+  background-color: #eee;
+  border: 1px solid #999;
+  display: block;
+  padding: 20px;
 }
 
 $colorMap: (

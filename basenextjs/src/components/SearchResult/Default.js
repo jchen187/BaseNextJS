@@ -140,7 +140,7 @@ class SearchResult extends React.Component {
             </pre>
           </>
         )}
-        { options && (
+        { !_.isEmpty(options) && (
           <>
             <h6 className={classNames(styles.subtitle)}>Options</h6>
             { _.map(options, (option) => (
@@ -156,7 +156,7 @@ class SearchResult extends React.Component {
             ))}
           </>
         )}
-        { links && (
+        { !_.isEmpty(links) && (
           <>
             <h6 className={classNames(styles.subtitle)}>Links and Resources</h6>
             <ul>

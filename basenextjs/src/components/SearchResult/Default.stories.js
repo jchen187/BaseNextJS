@@ -16,7 +16,7 @@ const styles = {
 };
 const CenterDecorator = (storyFn) => <div style={styles}>{storyFn()}</div>;
 
-storiesOf('SearchResult', module)
+storiesOf('SearchResult - Default', module)
 // .addDecorator(CenterDecorator)
   .add('Default', () => <SearchResult question={question} answer={answer} />)
   .add('Question only', () => <SearchResult question={question} />)

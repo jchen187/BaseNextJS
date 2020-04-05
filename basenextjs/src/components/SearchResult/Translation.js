@@ -47,7 +47,7 @@ class Translation extends React.Component {
             </pre>
           </div>
         )}
-        { options && (
+        { !_.isEmpty(options) && (
           <div>
             <h6 className={classNames(styles.subtitle)}>Options</h6>
             { _.map(options, (option) => (
