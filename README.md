@@ -70,7 +70,7 @@ package.json
 `eslint FILE --fix`
 `eslint FILE --fix-dry-run`
 
-### Other issues
+### ESLINT issues
 1. JSX not allowed in files with extensions '.js'
 https://stackoverflow.com/questions/43031126/jsx-not-allowed-in-files-with-extension-js-with-eslint-config-airbnb
 Option 1 -.eslintrc
@@ -82,6 +82,57 @@ Option 1 -.eslintrc
 Option 2 - webpack.config.js
 resolve: { extensions: ['.js', '.jsx'] },
 2. module.css and module.scss files - unexpected token .
+You cannot lint css with eslint. eslint is for js
+
+3. 'React' is not defined and 'React' must be in scopt when using JSX
+import React from 'react';
+
+4. 'Component' is missing in props-validation AND propType "Component" is not required, but has no corresponding defaultProps declaration
+https://stackoverflow.com/questions/38684925/react-eslint-error-missing-in-props-validation
+https://github.com/yannickcr/eslint-plugin-react/issues/1433
+
+`import PropTypes from 'prop-types'`
+
+Add to the components proptypes
+```
+ReactComponent.propTypes = {
+  Component: ...
+};
+
+ReactComponent.defaultProps = {
+Component: null
+}
+```
+
+5. Prop spreading is forbidden
+https://stackoverflow.com/questions/58726028/how-to-solve-prop-spreading-is-forbidden-in-custom-route-component
+https://eslint.org/docs/user-guide/configuring
+Add to the top of the file
+```
+/* eslint-disable
+  react/jsx-props-no-spreading,
+  react/prop-types
+*/
+```
+
+6. This line has a length of 131. Maximum allowed is 100
+Break up the line
+
+7. Prop type object is forbidden OR Prop type array is forbidden
+Object is too vague.
+https://github.com/yannickcr/eslint-plugin-react/issues/2079
+https://github.com/facebook/prop-types/issues/212
+
+// Bad
+PropTypes.object
+PropTypes.array
+
+// Good
+PropTypes.objectOf(PropTypes.object)
+PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string]))
+
+8. Component should be written as a pure function
+If you are only using render and do not need items like ComponentDidMount, do that
 
 ## Setting Up Lint Watching
 1. `npm install -g eslint-watch`
@@ -193,7 +244,34 @@ componentDidMount() {
 // Component File
 <pre><code class="language-css">p { color: red }</code></pre>
 ```
-## Move Essential Folders to Src
+## Setting Up CSS Linting
+https://github.com/stylelint/stylelint/blob/HEAD/docs/user-guide/get-started.md
+
+`npm install --save-dev stylelint stylelint-config-standard`
+
+`.stylelintrc.json`
+```
+{
+  "extends": "stylelint-config-standard"
+}
+```
+
+`npx stylelint "**/*.css"`
+
+### SCSS Linting
+`npm install --save-dev stylelint-config-sass-guidelines`
+
+`.stylelintrc.json`
+```
+{
+  "extends": "stylelint-config-sass-guidelines"
+  "rules": {
+    "indentation": "tab",
+    "number-leading-zero": null
+  }
+}
+```
+## Moving Essential Folders to Src
 By default, all pages are under the page directory. You can now have it nested under `src`
 https://nextjs.org/blog/next-9-1
 
@@ -319,7 +397,10 @@ https://nextjs.org/docs/routing/introduction
 Nested files are supported.
 
 ## Process Management With PM2
-1.
+https://pm2.keymetrics.io/docs/usage/quick-start/
+
+1. `npm install pm2@latest -g`
+2. `pm2 ecosystem` - create a config file that can get you started
 
 ## Acknowledgement
 1.
