@@ -28,6 +28,9 @@ Included with be
 ### Future Considerations
 - pm2 to manage processes
 - yeoman to easily create components
+- Makefile or yeoman?
+    - rename the project (not have it called basejs)
+    - regenerate index file within src/components
 - mongodb for search and database related items
 - firebase
 - redux
@@ -70,7 +73,7 @@ package.json
 2. add line to package.json in scripts section
   - `"watchLint": "esw --color --watch --changed --ext-js,jsx src"`
 
-## Setting Up Global CSS
+## Setting Up Global CSS and SCSS
 1. Create a new `pages/_app.js`
 ```
 import './prism.css'
@@ -94,6 +97,13 @@ https://nextjs.org/docs/basic-features/built-in-css-support
   - Component File
     `import styles from 'Button.module.scss'`
   - SCSS File called `Button.module.scss`
+
+#### Caveats
+If you have a global scss file and want to access the globally defined variables, you have to import the global file in each of your scss files.
+
+```
+@import "../global.scss"
+```
 
 ### OLD
 Back then you had to install packages to import .css and .scss files
