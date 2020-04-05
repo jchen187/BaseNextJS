@@ -66,6 +66,23 @@ package.json
 1. add line to package.json in scripts section
   - `"lint": "npx eslint ./pages"`
 
+### Other
+`eslint FILE --fix`
+`eslint FILE --fix-dry-run`
+
+### Other issues
+1. JSX not allowed in files with extensions '.js'
+https://stackoverflow.com/questions/43031126/jsx-not-allowed-in-files-with-extension-js-with-eslint-config-airbnb
+Option 1 -.eslintrc
+"rules": {
+  "react/jsx-filename-extension": [0] ,
+  "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+}
+
+Option 2 - webpack.config.js
+resolve: { extensions: ['.js', '.jsx'] },
+2. module.css and module.scss files - unexpected token .
+
 ## Setting Up Lint Watching
 1. `npm install -g eslint-watch`
   - make sure you have eslint globally installed
@@ -76,14 +93,15 @@ package.json
 ## Setting Up Global CSS and SCSS
 1. Create a new `pages/_app.js`
 ```
-import './prism.css'
-
 // This default export is required in a new `pages/_app.js` file.
 export default function MyApp({ Component, pageProps }) {
   return <Component {...pageProps} />
 }
 ```
-2. import any additional global styles you need
+2. Import any additional global styles you need
+```
+import './prism.css'
+```
 
 ## Setting Up SCSS
 There is now built in support for scss
@@ -104,6 +122,9 @@ If you have a global scss file and want to access the globally defined variables
 ```
 @import "../global.scss"
 ```
+
+Ideally, we shouldn't have to do this. Another option would be to utilize the configs, but that does not look like something that Next plans on using in the future.
+https://github.com/zeit/next.js/issues/10912
 
 ### OLD
 Back then you had to install packages to import .css and .scss files
@@ -291,6 +312,11 @@ module.exports = async ({ config, mode }) => {
   return config;
 };
 ```
+
+## Routing
+https://nextjs.org/docs/routing/introduction
+
+Nested files are supported.
 
 ## Process Management With PM2
 1.
