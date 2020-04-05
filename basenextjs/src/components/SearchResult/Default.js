@@ -112,32 +112,23 @@ class SearchResult extends React.Component {
             ))}
           </>
         )}
-        { answer && (
+        { !_.isEmpty(answer) && (
           <>
             <h6 className={classNames(styles.subtitle)}>Answer</h6>
-            <p className={styles.text}>{ answer }</p>
-          </>
-        )}
-        { code && (
-          <>
-            <h6 className={classNames(styles.subtitle)}>Code</h6>
-            <pre>
-              {/*
-          <code className="language-javascript">{ html }</code>
-*/}
-              <code className="language-javascript">
-                {/*
-{`onSubmit(e) {
-  e.preventDefault();
-  const job = {
-    title: 'Developer',
-    company: 'Facebook'
-  };
-}`}
-*/}
-                { code }
-              </code>
-            </pre>
+            { _.map(answer, (section) => (
+              <>
+                { section.text && (
+                  <p className={styles.text}>{ section.text }</p>
+                )}
+                { (section.code) && (
+                    <pre>
+                      <code className="language-javascript">
+                        { section.code }
+                      </code>
+                    </pre>
+                )}
+              </>
+            ))}
           </>
         )}
         { !_.isEmpty(options) && (
@@ -175,7 +166,7 @@ class SearchResult extends React.Component {
 
 // PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string]))
 SearchResult.propTypes = {
-  answer: PropTypes.string,
+  answer: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.string)),
   code: PropTypes.string,
   dateAdded: PropTypes.string,
   dateLastModified: PropTypes.string,
