@@ -17,56 +17,13 @@ import styles from './Default.module.scss';
 // 4. export default function (props) {
 
 /*
-let SearchResult;
-export default SearchResult = (props) => {
-  const {
-    answer,
-    code,
-    dateAdded,
-    dateLastModified,
-    links,
-    question,
-    tags,
-  } = props;
-
-const testCode = `var data = 1;`;
-const html = Prism.highlight(testCode, Prism.languages.javascript, 'javascript');
-
-  return (
-    <div className={classNames(styles.container, styles.content)}>
-      <div className="sticker">
-        <span className={styles.dot}></span>
-      </div>
-      <h5 className={classNames(styles.title)}>{ question }</h5>
-      <h6 className={classNames(styles.subtitle)}>Tags</h6>
-      { _.map(tags, tag => (
-        <span className={styles.tag}>{ tag }</span>
-      ))}
-      <h6 className={classNames(styles.subtitle)}>Answer</h6>
-      <p className={styles.text}>{ answer }</p>
-      <h6 className={classNames(styles.subtitle)}>Code</h6>
-      <pre>
-        <code className="language-javascript">{ html }</code>
-      </pre>
-
-      <h6 className={classNames(styles.subtitle)}>Links and Resources</h6>
-      <ul>
-        { _.map(links, link => (
-          <li>Link</li>
-        ))}
-      </ul>
-      <h6 className={classNames(styles.subtitle)}>ToDo</h6>
-      <ol>
-        <li>Buttons - Edit, Delete, Reorganize, Expand Contents</li>
-        <li>Need conditional Render</li>
-        <li>How to Style Code</li>
-        <li>Last modified and added</li>
-        <li>Tags should be links. When you click, it should do a search</li>
-      </ol>
-    </div>
-  );
-};
-*/
+ * TODO
+ * Buttons - Edit, Delete, Reorganize, Expand Contents
+ * Need conditional Render
+ * How to Style Code
+ * Last modified and added
+ * Tags should be links. When you click, it should do a search
+ */
 
 class SearchResult extends React.Component {
   componentDidMount() {
@@ -90,28 +47,17 @@ class SearchResult extends React.Component {
 
     return (
       <div className={classNames(styles.container, styles.content)}>
-        {/*
-        <h6 className={classNames(styles.subtitle)}>ToDo</h6>
-        <ol>
-          <li>Buttons - Edit, Delete, Reorganize, Expand Contents</li>
-          <li>Need conditional Render</li>
-          <li>How to Style Code</li>
-          <li>Last modified and added</li>
-          <li>Tags should be links. When you click, it should do a search</li>
-        </ol>
-        */}
         <div className="sticker">
           <span className={styles.dot} />
         </div>
-        <h5 className={classNames(styles.title)}>{ question }</h5>
         { !_.isEmpty(tags) && (
           <>
-            <h6 className={classNames(styles.subtitle)}>Tags</h6>
             { _.map(tags, (tag) => (
               <span className={styles.tag}>{ tag }</span>
             ))}
           </>
         )}
+        <h5 className={classNames(styles.title)}>{ question }</h5>
         { !_.isEmpty(answer) && (
           <>
             <h6 className={classNames(styles.subtitle)}>Answer</h6>
@@ -183,7 +129,7 @@ SearchResult.defaultProps = {
   dateLastModified: '',
   links: [],
   options: [],
-  question: 'When you dont have a question, ask a question',
+  question: 'Seems Like There is No Question Here...',
   tags: [],
 };
 

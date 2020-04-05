@@ -32,6 +32,10 @@ const answer2 = [
   }
 ];
 const tags = ['git', 'css', 'bash'];
+const links = [
+  "www.yahoo.com",
+  "https://swapps.com/blog/creating-animations-with-gsap-greensock/",
+];
 
 const styles = {
   textAlign: 'center',
@@ -48,10 +52,10 @@ storiesOf('SearchResult - Default', module)
   .add('Simple - Question with Answer and Code', () => <SearchResult question={question} answer={answer1} />)
   .add('Hard - Question with Answer', () => <SearchResult question={question} answer={answer2} />)
   .add('Hard - Question with Answer and Tags', () => <SearchResult question={question} tags={tags} answer={answer2} />)
-  .add('Hard - Question with Answer and Code', () => <SearchResult question={question} answer={answer2} />)
+  .add('Hard - Question with Answer and Code', () => <SearchResult question={question} answer={answer2} links={links} />)
   .add('2 Questions with Answer and Code', () => (
     <>
-      <SearchResult question={question} answer={answer1} />
-      <SearchResult question={question} answer={answer2} />
+      <SearchResult question={question} answer={answer1} tags={tags} links={links} />
+      <SearchResult question={question} answer={answer2} tags={tags} />
     </>
   ));
