@@ -403,9 +403,13 @@ https://pm2.keymetrics.io/docs/usage/quick-start/
 2. `pm2 ecosystem` - create a config file that can get you started
 
 ## GSAP
+They updated the library a bit so you will have to read the docs.
+i.e. TimelineMax can accept {} but will error out if given null.
+https://greensock.com/forums/topic/21908-v3-webpack-importing-error-module-not-found-gsapgsap/
+
 1. `npm install --save gsap`
 
-If you could import at the very top
+### If you could import at the very top
 
 OLD
 `import { TimelineMax, Power2 } from 'gsap/TweenMax';`
@@ -413,7 +417,7 @@ OLD
 NEW
 `import { TimelineMax, Power2 } from 'gsap';`
 
-If you cannot import at the very top
+### If you cannot import at the very top
 
 OLD
 ```
