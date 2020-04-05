@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "classnames": "^2.2.6",
+    "gsap": "^3.2.6",
     "lodash": "^4.17.15",
     "next": "^9.3.2",
     "prismjs": "^1.19.0",

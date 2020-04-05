@@ -402,6 +402,35 @@ https://pm2.keymetrics.io/docs/usage/quick-start/
 1. `npm install pm2@latest -g`
 2. `pm2 ecosystem` - create a config file that can get you started
 
+## GSAP
+1. `npm install --save gsap`
+
+If you could import at the very top
+
+OLD
+`import { TimelineMax, Power2 } from 'gsap/TweenMax';`
+
+NEW
+`import { TimelineMax, Power2 } from 'gsap';`
+
+If you cannot import at the very top
+
+OLD
+```
+const repeatConfigs = repeat ? { repeat: -1, repeatDelay: 1 } : null;
+const GSAP = require('gsap/TweenMax');
+const { TimelineMax, Power2 } = GSAP;
+const tl_1 = new TimelineMax(repeatConfigs);
+```
+
+NEW
+```
+const repeatConfigs = repeat ? { repeat: -1, repeatDelay: 1 } : {};
+const GSAP = require('gsap');
+const { TimelineMax, Power2 } = GSAP;
+const tl = new TimelineMax(repeatConfigs);
+```
+
 ## Acknowledgement
 1.
 
