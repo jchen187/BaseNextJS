@@ -1,7 +1,7 @@
-import Default from "./Default";
-import Translation from "./Translation";
+import Default from './Default';
+import Translation from './Translation';
 
 export {
   Default as SearchResult,
-  Translation
+  Translation,
 };
