@@ -32,6 +32,7 @@
     "@storybook/addons": "^5.3.17",
     "@storybook/react": "^5.3.17",
     "babel-loader": "^8.1.0",
+    "babel-plugin-prismjs": "^2.0.1",
     "css-loader": "^3.4.2",
     "eslint": "^6.8.0",
     "eslint-config-airbnb": "^18.1.0",

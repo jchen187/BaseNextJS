@@ -244,6 +244,32 @@ componentDidMount() {
 // Component File
 <pre><code class="language-css">p { color: red }</code></pre>
 ```
+
+### Customizing PrismJS
+https://ian.pvdindustrial.com/blog/prismjs-npm-webpack-wordpress-theme-20180920/
+https://betterstack.dev/blog/code-highlighting-in-react-using-prismjs/
+To enable line numbering, you need to do a bit more
+1. `npm install --save-dev babel-plugin-prismjs`
+2. Create a .babelrc at the root of your project
+```
+{
+  "plugins": [
+    ["prismjs", {
+      // "languages": ["javascript", "css", "html"],
+      "plugins": ["line-numbers", "show-language"],
+      // "theme": "okaidia",
+      "css": true
+    }]
+  ]
+}
+```
+You need the css to be true to get the line numbers and to show language.
+
+## Babel
+Babel is responsible for compiling new code es6 and transpiling to older code. The .babelrc file will be used in storybook and in regular dev
+https://nextjs.org/docs/advanced-features/customizing-babel-config
+https://storybook.js.org/docs/configurations/custom-babel-config/
+
 ## Setting Up CSS Linting
 https://github.com/stylelint/stylelint/blob/HEAD/docs/user-guide/get-started.md
 
