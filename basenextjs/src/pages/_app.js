@@ -9,6 +9,8 @@ import React from 'react';
 
 import '../styles/prism.css';
 import '../styles/global.scss';
+// import 'prismjs/plugins/line-numbers/prism-line-numbers.css';
+// import 'prismjs/plugins/toolbar/prism-toolbar.css';
 // import "prismjs/themes/prism.css";
 
 // This default export is required in a new `pages/_app.js` file.

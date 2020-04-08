@@ -1,10 +1,14 @@
 {
+  // NEED THIS FOR NEXT
+  "presets": [ "next/babel" ],
+  /*
   "plugins": [
     ["prismjs", {
       // "languages": ["javascript", "css", "html"],
-      "plugins": ["line-numbers", "show-language"],
+      // "plugins": ["line-numbers", "show-language"],
       // "theme": "okaidia",
       "css": true
     }]
   ]
+  */
 }
