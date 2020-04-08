@@ -248,7 +248,10 @@ componentDidMount() {
 ### Customizing PrismJS
 https://ian.pvdindustrial.com/blog/prismjs-npm-webpack-wordpress-theme-20180920/
 https://betterstack.dev/blog/code-highlighting-in-react-using-prismjs/
-To enable line numbering, you need to do a bit more
+https://prismjs.com/plugins/
+To enable features like line numbering, you need to do a bit more
+
+#### STORYBOOK
 1. `npm install --save-dev babel-plugin-prismjs`
 2. Create a .babelrc at the root of your project
 ```
@@ -264,6 +267,21 @@ To enable line numbering, you need to do a bit more
 }
 ```
 You need the css to be true to get the line numbers and to show language.
+
+#### FRONTEND
+1. You need to add an extra line to babel
+```
+  "presets": [ "next/babel" ],
+
+```
+https://nextjs.org/docs/advanced-features/customizing-babel-config
+
+For some reason we cant get these features to work on the frontend
+It complains that you need to put all your global css in '_app.js'. This might have to do with some of the plugins calling css files
+
+https://github.com/zeit/next.js/issues/10059
+https://github.com/PrismJS/prism/issues/2186
+https://github.com/zeit/next-plugins/issues/70
 
 ## Babel
 Babel is responsible for compiling new code es6 and transpiling to older code. The .babelrc file will be used in storybook and in regular dev
