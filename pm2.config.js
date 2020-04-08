@@ -2,55 +2,61 @@ module.exports = {
   apps : [
     {
       name: 'server',
+      cwd: './basenextjs',
+      exec_mode: 'fork',
       script: 'npm run dev',
+      // args: '',
+      env: { NODE_ENV: 'development' },
+
       instances: 1,
       autorestart: true,
-      watch: false, //watch and restart app if file changes
       max_memory_restart: '1G',
-      env: {
-        NODE_ENV: 'development'
-      },
-      env_production: {
-        NODE_ENV: 'production'
-      },
+      max_restarts: 10, // defaults to 15
+      watch: false, //watch and restart app if file changes
+      ignore_watch: [ "node_modules", "**/*.log" ],
 
-      log_date_format  : "YYYY-MM-DD HH:mm Z",
-      watch            : false,
-      ignore_watch     : [ "node_modules", "**/*.log" ],
-      max_restarts     : 10,      // defaults to 15
+      merge_logs: true,
+      // error_file: "",
+      // out_file: "",
+      // pid_file: "",
+      log_date_format: "YYYY-MM-DD HH:mm Z",
     },
     {
       name: 'storybook',
+      cwd: './basenextjs',
+      exec_mode: 'fork',
       script: 'npm run storybook',
+      // args: '-- -p 6006',
+      env: { NODE_ENV: 'development' },
+
       instances: 1,
       autorestart: true,
       watch: false,
       max_memory_restart: '1G',
-      env: {
-        NODE_ENV: 'development'
-      },
     },
     {
       name: 'lint',
+      cwd: './basenextjs',
+      exec_mode: 'fork',
       script: 'npm run lint',
+      env: { NODE_ENV: 'development' },
+
       instances: 1,
       autorestart: true,
       watch: false,
       max_memory_restart: '1G',
-      env: {
-        NODE_ENV: 'development'
-      },
     },
     {
       name: 'watch-lint',
+      cwd: './basenextjs',
+      exec_mode: 'fork',
       script: 'npm run watch:lint',
+      env: { NODE_ENV: 'development' },
+
       instances: 1,
       autorestart: false,
       watch: false,
       max_memory_restart: '1G',
-      env: {
-        NODE_ENV: 'development'
-      },
     },
     {
       name: 'API',
