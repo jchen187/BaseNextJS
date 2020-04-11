@@ -53,8 +53,11 @@ export class PrismCode extends React.Component {
 `;
 const cssCode = 'color: red';
 const bashCode = 'npm install lodash';
+const bashCode2 = `
+ls -la
+Desktop
+Documents`;
 const plugins = ['line-numbers'];
-
 
 storiesOf('CodeBlock', module)
   .addDecorator(CenterDecorator)
@@ -62,7 +65,8 @@ storiesOf('CodeBlock', module)
   .add('JS Long', () => <CodeBlock code={jsCode2} language={js} />)
   .add('JS Long with Line Numbers', () => <CodeBlock code={jsCode2} plugins={plugins} language={js} />)
   .add('CSS', () => <CodeBlock code={cssCode} language={css} />)
-  .add('Bash', () => <CodeBlock code={bashCode} language={bash} />)
+  .add('Bash', () => <CodeBlock plugins={['command-line']} code={bashCode} language={bash} />)
+  .add('Bash With Output', () => <CodeBlock plugins={['command-line']} code={bashCode2} language={bash} dataUser="johnny" dataOutput="2" />)
   .add('Multiple', () => (
     <>
       <CodeBlock code={jsCode1} language={js} />
