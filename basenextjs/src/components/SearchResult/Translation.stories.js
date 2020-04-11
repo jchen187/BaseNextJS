@@ -4,7 +4,6 @@ import { action } from '@storybook/addon-actions';
 import { Button } from '@storybook/react/demo';
 
 import { Translation } from '.';
-import '../../styles/prism.css'; // NEED THIS TO GET HIGHLIGHINT WORKING IN STORYBOOK
 
 const from1 = 'how are you';
 const to1 = 'como estas';

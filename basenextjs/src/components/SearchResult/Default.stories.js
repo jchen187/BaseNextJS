@@ -4,7 +4,6 @@ import { action } from '@storybook/addon-actions';
 import { Button } from '@storybook/react/demo';
 
 import { SearchResult } from '.';
-import '../../styles/prism.css'; // NEED THIS TO GET HIGHLIGHINT WORKING IN STORYBOOK
 
 const question = 'Orbitkey Why do some things happen and not others';
 const answerOLD = 'Connected Near Your Current Locations This is the answer';

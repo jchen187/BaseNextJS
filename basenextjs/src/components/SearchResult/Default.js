@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 import React from 'react';
 // const Prism = require('prismjs');
 
-// import '../../../src/styles/prism.css';
 import styles from './Default.module.scss';
 
 import CodeBlock from '../CodeBlock';
