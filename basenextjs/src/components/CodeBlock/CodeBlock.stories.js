@@ -1,6 +1,9 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 
+import '../../javascript/prismPlugins.js';
+import '../../javascript/prismPluginsCSS.js';
+
 import CodeBlock from './CodeBlock';
 
 const styles = {
