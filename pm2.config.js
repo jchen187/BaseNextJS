@@ -1,3 +1,8 @@
+/*
+ * CWD is the directly you will cd into from where you currently are.
+ * After you change your directory, the script will run
+ */
+
 module.exports = {
   apps : [
     {
@@ -34,6 +39,7 @@ module.exports = {
       watch: false,
       max_memory_restart: '1G',
     },
+    /*
     {
       name: 'lint',
       cwd: './basenextjs',
@@ -75,6 +81,7 @@ module.exports = {
         NODE_ENV: 'production'
       }
     }
+      */
   ],
 
   deploy : {

@@ -268,7 +268,7 @@ To enable features like line numbering, you need to do a bit more
 ```
 You need the css to be true to get the line numbers and to show language.
 
-#### FRONTEND
+#### FRONTEND - DOES NOT WORK WITH NEXTJS
 1. You need to add an extra line to babel
 ```
   "presets": [ "next/babel" ],
@@ -282,6 +282,22 @@ It complains that you need to put all your global css in '_app.js'. This might h
 https://github.com/zeit/next.js/issues/10059
 https://github.com/PrismJS/prism/issues/2186
 https://github.com/zeit/next-plugins/issues/70
+
+#### FRONTEND - WORKS
+import the plugins directly into `_app.js` along with any css files.
+
+However it seems like you will run into issues when you try to build and run on production. Therefore it might make sense to do all the imports in a separate file and call that file from whatever page you are on.
+
+### Important Prism Notes
+Do not have Prism.highlightAll() in the component and the page calling the component. You will run into multiple issues.
+In short, do not call Prism.highlight multiple times.
+
+If you have other components wrapped in div tags, they may be adversely affected.
+
+You dont have to mention show-language and copy-to-clipboard in plugins. They automatically show up once you import the plugins(maybe true for all browsers except for firefox?)
+
+Plugins are not working properly on Firefox
+- might be due to cache(but it even shows after you do a hard refresh). if you look at the dev tools, you will notice the html is not correct. if you are good on chrome and safari, i wouldnt worry too much
 
 ## Babel
 Babel is responsible for compiling new code es6 and transpiling to older code. The .babelrc file will be used in storybook and in regular dev
