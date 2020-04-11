@@ -8,9 +8,11 @@ import React from 'react';
 // import '../../../src/styles/prism.css';
 import styles from './Translation.module.scss';
 
+import CodeBlock from '../CodeBlock';
+
 class Translation extends React.Component {
   componentDidMount() {
-    Prism.highlightAll();
+    // Prism.highlightAll();
   }
 
   render() {
@@ -25,7 +27,7 @@ class Translation extends React.Component {
     const html = Prism.highlight(testCode, Prism.languages.javascript, 'javascript');
 
     return (
-      <div className={classNames(styles.container, styles.content)}>
+      <article className={classNames(styles.container, styles.content)}>
         <div className="sticker">
           <span className={styles.dot} />
         </div>
@@ -40,11 +42,10 @@ class Translation extends React.Component {
         )}
         { to && (
           <div className={styles.codeBlockContainer}>
-            <pre className={styles.codeBlock}>
-              <code className="language-css">
-                { to }
-              </code>
-            </pre>
+            <CodeBlock
+              code={to}
+              className={styles.codeBlock}
+            />
           </div>
         )}
         { !_.isEmpty(options) && (
@@ -54,17 +55,16 @@ class Translation extends React.Component {
               <div className={styles.codeBlockOptionContainer}>
                 <span>{option.english}</span>
                 <div>
-                  <pre className={styles.codeBlockWithinOptions}>
-                    <code className="language-javascript">
-                      {option.spanish}
-                    </code>
-                  </pre>
+                  <CodeBlock
+                    code={option.spanish}
+                    className={styles.codeBlockWithinOptions}
+                  />
                 </div>
               </div>
             ))}
           </div>
         )}
-      </div>
+      </article>
     );
   }
 }

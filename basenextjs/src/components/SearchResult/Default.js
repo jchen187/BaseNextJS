@@ -8,6 +8,8 @@ import React from 'react';
 // import '../../../src/styles/prism.css';
 import styles from './Default.module.scss';
 
+import CodeBlock from '../CodeBlock';
+
 // assignment to undeclared variable SearchResult if you dont have the let SearchResult.
 // You can also leave that line out and do
 // 1. export default (props) => {
@@ -27,7 +29,8 @@ import styles from './Default.module.scss';
 
 class SearchResult extends React.Component {
   componentDidMount() {
-    Prism.highlightAll();
+    // TRY TO AVOID
+    // Prism.highlightAll();
   }
 
   render() {
@@ -46,7 +49,7 @@ class SearchResult extends React.Component {
     const html = Prism.highlight(testCode, Prism.languages.javascript, 'javascript');
 
     return (
-      <div className={classNames(styles.container, styles.content)}>
+      <article className={classNames(styles.container, styles.content)}>
         <div className="sticker">
           <span className={styles.dot} />
         </div>
@@ -67,29 +70,12 @@ class SearchResult extends React.Component {
                   <p className={styles.text}>{ section.text }</p>
                 )}
                 { (section.code) && (
-                    <pre>
-                      <code className="language-javascript">
-                        { section.code }
-                      </code>
-                    </pre>
+                  <CodeBlock
+                    code={section.code}
+                    plugins={['line-numbers']}
+                  />
                 )}
               </>
-            ))}
-          </>
-        )}
-        { !_.isEmpty(options) && (
-          <>
-            <h6 className={classNames(styles.subtitle)}>Options</h6>
-            { _.map(options, (option) => (
-              <p>
-                <span>
-                  {option.english}
-                  {' '}
-                  -
-                  {' '}
-                </span>
-                <pre><code className="language-javascript">{option.spanish}</code></pre>
-              </p>
             ))}
           </>
         )}
@@ -105,7 +91,7 @@ class SearchResult extends React.Component {
             </ul>
           </>
         )}
-      </div>
+      </article>
     );
   }
 }
@@ -134,24 +120,3 @@ SearchResult.defaultProps = {
 };
 
 export default SearchResult;
-/*
-const SearchResult = (props) => {
-  const {
-    answer,
-    code,
-    question,
-    tags,
-  } = props;
-
-  return (
-    <React.Fragment>
-      <p>{ question }</p>
-      <p>{ tags }</p>
-      <p>{ answer }</p>
-      <p>{ code }</p>
-    </React.Fragment>
-  );
-};
-
-export default SearchResult;
-*/
