@@ -451,6 +451,39 @@ module.exports = async ({ config, mode }) => {
 };
 ```
 
+### Setting Up Images
+For some reason, images are not loading in storybook. Supposedly you could update your webpack config in storybook to include the following but that didnt work for me, so i updated my run target
+
+DOESNT - .storybook/webpack.config.js
+```
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.(png|jpe?g|gif)$/i,
+        use: [
+          {
+            loader: 'file-loader',
+          },
+        ],
+      },
+    ],
+  },
+};
+```
+
+WORKS - package.json
+```
+{
+"scripts": {
+    "start-storybook": "start-storybook -s ./public -p 9001"
+  }
+}
+```
+
+https://stackoverflow.com/questions/58267903/serving-static-files-in-storybook-js
+https://stephencharlesweiss.com/blog/2019-06-03/storybook-and-static-images/
+
 ## Routing
 https://nextjs.org/docs/routing/introduction
 
