@@ -17,10 +17,10 @@ module.exports = async ({ config, mode }) => {
                       modules: true,
                   }
               },
-              {loader:"sass-loader"}
+              { loader:'sass-loader' }
           ],
       include: /\.module\.scss$/
-    },
+    }
   );
 
   return config;
