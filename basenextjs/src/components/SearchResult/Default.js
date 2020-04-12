@@ -84,7 +84,7 @@ class SearchResult extends React.Component {
             <ul>
               { _.map(links, (link) => (
                 <li>
-                  <a href={link}>{link}</a>
+                  <a className={styles.link} href={link}>{link}</a>
                 </li>
               ))}
             </ul>

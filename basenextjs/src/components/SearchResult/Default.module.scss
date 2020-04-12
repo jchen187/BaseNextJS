@@ -86,3 +86,16 @@ $colorMap: (
     color: $colorName;
   }
 }
+
+.link {
+  color: gray;
+  transition: color 0.5s;
+
+  &:hover {
+    color: #56d256;
+  }
+
+  &:visited {
+    color: #56d256;
+  }
+}
