@@ -3,11 +3,17 @@
  * After you change your directory, the script will run
  */
 
+// import { cwd } from './config.js';
+const configs = require('./config.js');
+const {
+  cwd
+} = configs;
+
 module.exports = {
   apps : [
     {
       name: 'server',
-      cwd: './basenextjs',
+      cwd: cwd,
       exec_mode: 'fork',
       script: 'npm run dev',
       // args: '',
@@ -28,7 +34,7 @@ module.exports = {
     },
     {
       name: 'storybook',
-      cwd: './basenextjs',
+      cwd: cwd,
       exec_mode: 'fork',
       script: 'npm run storybook',
       // args: '-- -p 6006',
@@ -42,7 +48,7 @@ module.exports = {
     /*
     {
       name: 'lint',
-      cwd: './basenextjs',
+      cwd: cwd,
       exec_mode: 'fork',
       script: 'npm run lint',
       env: { NODE_ENV: 'development' },
@@ -54,7 +60,7 @@ module.exports = {
     },
     {
       name: 'watch-lint',
-      cwd: './basenextjs',
+      cwd: cwd,
       exec_mode: 'fork',
       script: 'npm run watch:lint',
       env: { NODE_ENV: 'development' },
