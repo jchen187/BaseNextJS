@@ -21,6 +21,7 @@
     "next": "^9.3.2",
     "prismjs": "^1.19.0",
     "prop-types": "^15.7.2",
+    "rc-collapse": "^1.11.8",
     "react": "16.13.1",
     "react-content-loader": "^5.0.4",
     "react-dom": "16.13.1",
