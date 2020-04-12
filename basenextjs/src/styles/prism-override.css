@@ -7,11 +7,15 @@ div.code-toolbar > .toolbar span {
 	font-family: Verdana;
 	padding: 0.3em .6em;
 	margin: 5px 5px;
+	/*
 	background: #f5f2f0;
 	background: rgba(224, 224, 224, 0.9);
+	*/
+	background: rgba(153, 153, 153, 0.8);
+	background: rgba(187, 187, 187, 0.9);
 	box-shadow: 0 2px 0 0 rgba(0,0,0,0.2);
 	border-radius: .6em;
-	transition: color 0.5s,
+	transition: background-color 0.5s,
 }
 
 div.code-toolbar > .toolbar a:hover,
@@ -20,6 +24,8 @@ div.code-toolbar > .toolbar button:hover,
 div.code-toolbar > .toolbar button:focus,
 div.code-toolbar > .toolbar span:hover,
 div.code-toolbar > .toolbar span:focus {
-	color: inherit;
+	/* color: inherit; */
+	color: white;
+	background: #56d256;
 	text-decoration: none;
 }
