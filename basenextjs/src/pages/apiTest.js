@@ -31,6 +31,20 @@ function CompWithSWR() {
   return name;
 }
 
+function BusTimeWithSWR() {
+  const { data, error } = useSWR('/api/bus', fetcher);
+  let timeForBus = data?.time;
+
+  if (!data) {
+    timeForBus = 'Loading...'
+  }
+  if (error) {
+    timeForBus = 'Error fetching bus time.'
+  }
+
+  // You can return a value or a comp. Its up to you.
+  return (<p>Time for Bus - {timeForBus} </p>)
+}
 class ApiTest extends React.Component {
   constructor(props) {
     super(props);
@@ -85,6 +99,7 @@ class ApiTest extends React.Component {
           <p>Fetch - {this.state.dataWithFetch2} </p>
           <CompWithSWR />
           <p>Props - {this.props.dataWithProps} </p>
+          <BusTimeWithSWR />
         </main>
 
         <footer>
