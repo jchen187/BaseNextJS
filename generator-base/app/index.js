@@ -297,15 +297,6 @@ If you are within the project you are working in, make sure you you stay in the 
         //this.destinationPath('public/' + componentJSXFilePath),
         this.answers
       );
-
-      //This is what they had initially
-      /*
-      this.fs.copyTpl(
-        this.templatePath('index.html'),
-        this.destinationPath('public/index.html'),
-        { title: 'Templating with Yeoman' }
-      );
-      */
     }
 
     if (this.answers.confirmEverythingOK && this.answers.enableCustomStyles) {
