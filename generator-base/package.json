@@ -1,0 +1,15 @@
+{
+  "name": "generator-base",
+  "version": "1.0.0",
+  "description": "Generate components, pages and api for basenextjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "lodash": "^4.17.15",
+    "yeoman-generator": "^4.9.0"
+  }
+}

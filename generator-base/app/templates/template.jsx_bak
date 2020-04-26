@@ -1,0 +1,63 @@
+/*
+<%= if (includeLodash) { %>
+import _ from 'lodash';
+<%= } %>
+*/
+import React from 'react';
+import propTypes from 'prop-types;
+
+import styles from './styles.scss'
+
+  /*
+const <%= componentName %> = (props) => {
+  const {
+
+  } = props;
+}
+
+export default <%= componentName %>;
+
+<%= componentName %>.propTypes = {
+
+}
+
+
+
+<%= if (includeLodash) { %>
+<%= componentName %>.defaultProps = {
+
+}
+<%= } %>
+*/
+
+
+
+/*
+class <%= pageName => extends React.Component {
+  constructor() {
+    super(props);
+    const {
+
+    } = props;
+
+    this.state = {
+
+    }
+  }
+
+  componentDidMount() {
+
+  }
+
+  render() {
+    return (
+      <React.Fragment>
+
+      </React.Fragment>
+    )
+  }
+
+}
+
+export default <%= pageName %>;
+*/
