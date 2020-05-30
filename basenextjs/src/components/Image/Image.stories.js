@@ -14,9 +14,12 @@ const CenterDecorator = (storyFn) => <div style={styles}>{storyFn()}</div>;
 
 storiesOf('Image', module)
   .addDecorator(CenterDecorator)
-  .add('chinchilla', () => <Image defaultSrc={chinchilla}
-    mobile={test}
-    tablet={chinchilla}
-    desktop={test}
-  />)
+  .add('chinchilla', () => (
+    <Image
+      defaultSrc={chinchilla}
+      mobile={test}
+      tablet={chinchilla}
+      desktop={test}
+    />
+  ))
   .add('Test', () => <Image defaultSrc={test} />);

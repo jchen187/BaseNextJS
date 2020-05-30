@@ -14,13 +14,13 @@ function Image(props) {
 
   return (
     <>
-    <div className={styles.imageContainer}>
-      <picture>
-        <source media="(min-width: 900px)" srcset={desktop || defaultSrc} />
-        <source media="(min-width: 600px)" srcset={tablet || defaultSrc} />
-        <img className={styles.image} src={mobile || defaultSrc} alt={alt} />
-      </picture>
-    </div>
+      <div className={styles.imageContainer}>
+        <picture>
+          <source media="(min-width: 900px)" srcSet={desktop || defaultSrc} />
+          <source media="(min-width: 600px)" srcSet={tablet || defaultSrc} />
+          <img className={styles.image} src={mobile || defaultSrc} alt={alt} />
+        </picture>
+      </div>
     </>
   );
 }

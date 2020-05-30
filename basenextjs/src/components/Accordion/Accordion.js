@@ -9,10 +9,10 @@ class Accordion extends React.Component {
   render() {
     return (
       <>
-      <Collapse accordion={true}>
-        <Panel header="hello" headerClass="my-header-class">this is panel content</Panel>
-        <Panel header="title2">this is panel content2 or other</Panel>
-      </Collapse>
+        <Collapse accordion>
+          <Panel header="hello" headerClass="my-header-class">this is panel content</Panel>
+          <Panel header="title2">this is panel content2 or other</Panel>
+        </Collapse>
       </>
     );
   }

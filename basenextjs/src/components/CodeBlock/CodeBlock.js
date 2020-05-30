@@ -34,7 +34,7 @@ class CodeBlock extends React.Component {
       dataHost,
       dataOutput,
       plugins,
-      language
+      language,
     } = this.props;
 
     const normalizedCode = nw.normalize(code, {
@@ -44,15 +44,16 @@ class CodeBlock extends React.Component {
 
     return (
       <>
-      <pre className={!plugins ? '' : plugins.join(' ')}
-        data-user={dataUser}
-        data-host={dataHost}
-        data-output={dataOutput}
-      >
-        <code ref={this.ref} className={`language-${language}`}>
-          {normalizedCode}
-        </code>
-      </pre>
+        <pre
+          className={!plugins ? '' : plugins.join(' ')}
+          data-user={dataUser}
+          data-host={dataHost}
+          data-output={dataOutput}
+        >
+          <code ref={this.ref} className={`language-${language}`}>
+            {normalizedCode}
+          </code>
+        </pre>
       </>
     );
   }

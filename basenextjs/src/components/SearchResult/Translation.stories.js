@@ -7,7 +7,7 @@ import { Translation } from '.';
 
 const from1 = 'how are you';
 const to1 = 'como estas';
-const tags1 = ['Greeting','Directions'];
+const tags1 = ['Greeting', 'Directions'];
 
 const from2 = 'this is _________';
 const to2 = 'ella es ________';
@@ -25,7 +25,7 @@ storiesOf('SearchResult - Translation', module)
 // .addDecorator(CenterDecorator)
   .add('1 - From Only', () => <Translation from={from1} />)
   .add('1 - From and To only', () => <Translation from={from1} to={to1} />)
-  .add('1 - With Tags Too', () => <Translation from={from1} to={to1} tags={tags1}/>)
+  .add('1 - With Tags Too', () => <Translation from={from1} to={to1} tags={tags1} />)
   .add('2 - From Only', () => <Translation from={from2} />)
   .add('2 - From and To only', () => <Translation from={from2} to={to2} />)
-  .add('2 - With Options Too', () => <Translation from={from2} to={to2} options={options2}/>);
+  .add('2 - With Options Too', () => <Translation from={from2} to={to2} options={options2} />);

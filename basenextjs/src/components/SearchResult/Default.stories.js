@@ -8,18 +8,18 @@ import { SearchResult } from '.';
 const question = 'Orbitkey Why do some things happen and not others';
 const answerOLD = 'Connected Near Your Current Locations This is the answer';
 const answer1 = [
-  { text: 'Connected Near Your Current Locations This is the answer'}
+  { text: 'Connected Near Your Current Locations This is the answer' },
 ];
 const answer2 = [
   {
     text: 'Connected Near Your Current Locations This is the answer',
-    code: `var = 1`
+    code: 'var = 1',
   },
   {
-   code: 'npm install test'
+    code: 'npm install test',
   },
   {
-    text: 'NO Code attached'
+    text: 'NO Code attached',
   },
   {
     code: `onSubmit(e) {
@@ -27,13 +27,13 @@ const answer2 = [
   const job = {
     title: 'Developer',
     company: 'Facebook'
-  };`
-  }
+  };`,
+  },
 ];
 const tags = ['git', 'css', 'bash'];
 const links = [
-  "www.yahoo.com",
-  "https://swapps.com/blog/creating-animations-with-gsap-greensock/",
+  'www.yahoo.com',
+  'https://swapps.com/blog/creating-animations-with-gsap-greensock/',
 ];
 
 const styles = {
