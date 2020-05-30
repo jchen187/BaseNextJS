@@ -16,9 +16,11 @@
   },
   "dependencies": {
     "classnames": "^2.2.6",
+    "fuse.js": "^6.0.0",
     "gsap": "^3.2.6",
+    "jsdom": "^16.2.2",
     "lodash": "^4.17.15",
-    "next": "^9.3.2",
+    "next": "^9.4.4",
     "prismjs": "^1.19.0",
     "prop-types": "^15.7.2",
     "rc-collapse": "^1.11.8",
