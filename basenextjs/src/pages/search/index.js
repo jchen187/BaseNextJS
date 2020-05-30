@@ -5,6 +5,7 @@ import Head from 'next/head';
 
 import { SearchResult } from '../../components/SearchResult';
 
+import '../../javascript/prismPlugins.js';
 import list from './codeList.js';
 
 class Search extends React.Component {
@@ -18,7 +19,7 @@ class Search extends React.Component {
 
   updateSearch(event) {
     this.setState({ query: event.target.value });
-    // console.log(event.target.value);
+    console.log(event.target.value);
   }
 
   render() {
@@ -45,6 +46,7 @@ class Search extends React.Component {
             <li>Todo</li>
             <li>Update keys for translation</li>
             <li>Use api to fetch results</li>
+            <li>get plugin that properly shifts the code to the left</li>
           </ul>
 
           <div className="inputContainer">
@@ -59,7 +61,7 @@ class Search extends React.Component {
                 resources
               } = item.item;
               return (
-                <SearchResult question={question} answer={answer} tags={tags} links={resources} />
+                <SearchResult key={question} question={question} answer={answer} tags={tags} links={resources} />
               )}
             )}
 
