@@ -1,6 +1,10 @@
 import React from 'react';
+import Normalizer from 'prismjs/plugins/normalize-whitespace/prism-normalize-whitespace';
 import Prism from 'prismjs';
 import PropTypes from 'prop-types';
+
+// You need to import Normalizer - if you take it out you will run into issues
+const nw = Prism.plugins.NormalizeWhitespace;
 
 class CodeBlock extends React.Component {
   constructor(props) {
@@ -33,6 +37,11 @@ class CodeBlock extends React.Component {
       language
     } = this.props;
 
+    const normalizedCode = nw.normalize(code, {
+      // Extra settings
+      // indent: 1
+    });
+
     return (
       <>
       <pre className={!plugins ? '' : plugins.join(' ')}
@@ -41,7 +50,7 @@ class CodeBlock extends React.Component {
         data-output={dataOutput}
       >
         <code ref={this.ref} className={`language-${language}`}>
-          {code.trim()}
+          {normalizedCode}
         </code>
       </pre>
       </>
