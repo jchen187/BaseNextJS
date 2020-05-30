@@ -19,7 +19,8 @@ import React from 'react';
 
 // Prism CSS
 /*
- * Make sure the styles match what we see in `../javascript/prismPluginsCSS.js`. We cannot import that file because all global css need to be declared here.
+ * Make sure the styles match what we see in `../javascript/prismPluginsCSS.js`.
+ * We cannot import that file because all global css need to be declared here.
  */
 import 'prismjs/themes/prism-okaidia.css';
 import 'prismjs/plugins/toolbar/prism-toolbar.css';

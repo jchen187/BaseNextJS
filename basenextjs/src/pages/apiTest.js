@@ -11,6 +11,11 @@ function fetcher(url) {
   return fetch(url).then(r => r.json());
 }
 
+
+function fetcher2(url) {
+  return fetch(url).then(r => r.text());
+}
+
 // This gets called whenever you refocus a page
 // If you are using SWR, you should create a separate function where you call it and then this function will be called in the main component
 function CompWithSWR() {
@@ -31,8 +36,8 @@ function CompWithSWR() {
   return name;
 }
 
-function BusTimeWithSWR() {
-  const { data, error } = useSWR('/api/bus', fetcher);
+function BusTimeWithSWRandJSON() {
+  const { data, error } = useSWR('/api/busJSON', fetcher);
   let timeForBus = data?.time;
 
   if (!data) {
@@ -43,8 +48,34 @@ function BusTimeWithSWR() {
   }
 
   // You can return a value or a comp. Its up to you.
-  return (<p>Time for Bus - {timeForBus} </p>)
+  return (
+    <>
+    <p>Bus JSON</p>
+    {timeForBus}
+    </>
+  )
 }
+
+function BusTimeWithSWRandHTML() {
+  const { data, error } = useSWR('/api/busHTML', fetcher2);
+  let timeForBus = data;
+
+  if (!data) {
+    timeForBus = 'Loading...'
+  }
+  if (error) {
+    timeForBus = 'Error fetching bus time.'
+  }
+
+  // You can return a value or a comp. Its up to you.
+  return (
+    <>
+    <p>Bus HTML </p>
+    <div dangerouslySetInnerHTML={{ __html: timeForBus }} />
+    </>
+  )
+}
+
 class ApiTest extends React.Component {
   constructor(props) {
     super(props);
@@ -99,7 +130,9 @@ class ApiTest extends React.Component {
           <p>Fetch - {this.state.dataWithFetch2} </p>
           <CompWithSWR />
           <p>Props - {this.props.dataWithProps} </p>
-          <BusTimeWithSWR />
+          --------
+          <BusTimeWithSWRandJSON />
+          <BusTimeWithSWRandHTML />
         </main>
 
         <footer>

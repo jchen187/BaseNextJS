@@ -2,21 +2,34 @@ import React from 'react';
 import Head from 'next/head';
 import Prism from 'prismjs';
 
+import '../javascript/prismPlugins';
+
 // not default export, so need the {} and the exact name
 // make sense if you are exporting a lot of items. how do you differentiate
 // import { ButtonWithCSS } from '../components/Button/ButtonWithCSS';
-import ButtonWithCSS from '../components/Button/ButtonWithCSS';
-import ButtonWithSCSS from '../components/Button/ButtonWithSCSS';
 import { SearchResult } from '../components/SearchResult';
+import CodeBlock from '../components/CodeBlock';
+import Image from '../components/Image';
 
-const code = 'var data = 1;';
+const code = `var data = 1;
+
+console.log(test)`;
+const bashResult = `ls
+Desktop Document`;
 
 // Returns a highlighted HTML string
-const html = Prism.highlight(code, Prism.languages.javascript, 'javascript');
+// const html = Prism.highlight(code, Prism.languages.javascript, 'javascript');
 
 class Home extends React.Component {
   componentDidMount() {
-    Prism.highlightAll(); // need this to properly color
+    // SHOULD DO THIS WITHIN COMPONENT. YOU RUN INTO ISSUES WHEN YOU DO THE HIGHLIGHT 2x
+
+    console.log(`Environment: ${process.env.NODE_ENV}`);
+    if (process.env.NODE_ENV === 'production') {
+      // need this to get command line working on production
+      Prism.highlightAll();
+      console.log('highlighting done');
+    }
     console.log('Prism work');
   }
 
@@ -35,6 +48,11 @@ class Home extends React.Component {
             <a href="https://nextjs.org">Next.js!</a>
           </h1>
 
+          <Image defaultSrc="/chinchilla1.jpg" />
+          ----
+          <Image defaultSrc="./test.jpg" />
+          <Image defaultSrc="./test.png" />
+          {/*
           CSS
           <ButtonWithCSS />
           --------------------
@@ -42,23 +60,88 @@ class Home extends React.Component {
           <ButtonWithSCSS />
 
           --------------------
+          <LinePatternAnimation />
+          <SolidPatternAnimation />
+          */}
+
+          {/*
           <pre>
             <code dangerouslySetInnerHTML={{ __html: html }} />
           </pre>
-          <pre className="language-javascript">Espero que tu recuperes</pre>
+          */}
 
+          <pre className="command-line">
+            <code className="language-javascript">var test = 1</code>
+          </pre>
+
+
+          <p>how to get it working for storbook? the babel does not work</p>
+          <CodeBlock
+            code="Espero que tu recuperes"
+            plugins={['command-line']}
+          />
+          <CodeBlock
+            code="Espero que tu recuperes"
+            plugins={['line-numbers']}
+          />
+          <CodeBlock
+            code="Espero que tu recuperes"
+            plugins={['command-line']}
+          />
+
+          <CodeBlock
+            code={code}
+          />
+          <CodeBlock
+            code={code}
+            plugins={['line-numbers']}
+          />
+          THIS ONE SHOULD HAVE CUSTOM USER AND HOST
+          <CodeBlock
+            code={code}
+            plugins={['command-line']}
+            dataUser="sam"
+            dataHost="borad"
+            dataOutput="2-3"
+          />
+          <CodeBlock
+            code={bashResult}
+            plugins={['command-line']}
+            dataUser="sam"
+            dataHost="borad"
+            dataOutput="2"
+          />
+
+          <div>Single</div>
+          <p>Test</p>
+          <section>
+            <div>
+              Double
+            </div>
+          </section>
           <SearchResult
             question="what is this"
-            answer="the answer"
-            code="some code"
+            answer={[
+              { text: 'the answer' },
+              { code },
+            ]}
           />
+          <SearchResult
+            question="Next one"
+            answer={[
+              { text: 'work is so boring' },
+              { code },
+            ]}
+          />
+
+
           <p className="description">
             Get started by editing
             {' '}
             <code>pages/index.js</code>
           </p>
 
-          <div className="grid">
+          <section className="grid">
             <a href="https://nextjs.org/docs" className="card">
               <h3>Documentation &rarr;</h3>
               <p>Find in-depth information about Next.js features and API.</p>
@@ -86,7 +169,7 @@ class Home extends React.Component {
                 Instantly deploy your Next.js site to a public URL with ZEIT Now.
               </p>
             </a>
-          </div>
+          </section>
         </main>
 
         <footer>
@@ -249,4 +332,5 @@ class Home extends React.Component {
     );
   }
 }
+
 export default Home;

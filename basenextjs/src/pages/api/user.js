@@ -6,11 +6,11 @@ const friends = [
   { name: 'Jen' },
   { name: 'Al' },
   { name: 'Gore' },
-]
+];
 
 export default (req, res) => {
-  res.statusCode = 200
-  res.setHeader('Content-Type', 'application/json')
+  res.statusCode = 200;
+  res.setHeader('Content-Type', 'application/json');
   // Version 1
   // res.end(JSON.stringify({ name: 'John Doe' }))
 
@@ -22,6 +22,6 @@ export default (req, res) => {
   // res.send({ name: 'Jane Doe' })
 
   // Version 4
-  let randomNumber = _.random(0, _.size(friends));
-  res.send( _.nth(friends, randomNumber))
-}
+  const randomNumber = _.random(0, _.size(friends));
+  res.send(_.nth(friends, randomNumber));
+};
