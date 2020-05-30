@@ -5,8 +5,22 @@ import Head from 'next/head';
 
 import { SearchResult } from '../../components/SearchResult';
 
-import '../../javascript/prismPlugins.js';
-import list from './codeList.js';
+import '../../javascript/prismPlugins';
+import list from './codeList';
+
+const options = {
+  shouldSort: true,
+  threshold: 0.6,
+  location: 0,
+  distance: 100,
+  maxPatternLength: 32,
+  minMatchCharLength: 1,
+  keys: [
+    'question',
+    'answer.text',
+    'answer.code',
+  ],
+};
 
 class Search extends React.Component {
   constructor(props) {
@@ -19,7 +33,6 @@ class Search extends React.Component {
 
   updateSearch(event) {
     this.setState({ query: event.target.value });
-    console.log(event.target.value);
   }
 
   render() {
@@ -50,39 +63,36 @@ class Search extends React.Component {
           </ul>
 
           <div className="inputContainer">
-            <input type="text" className="input" placeholder="What do you want to search?" onChange={this.updateSearch} />
+            <input
+              type="text"
+              className="input"
+              placeholder="What do you want to search?"
+              onChange={this.updateSearch}
+            />
           </div>
 
-            { _.map(top10displayResults, (item) => {
-              const {
-                question,
-                answer,
-                tags,
-                resources
-              } = item.item;
-              return (
-                <SearchResult key={question} question={question} answer={answer} tags={tags} links={resources} />
-              )}
-            )}
+          { _.map(top10displayResults, (item) => {
+            const {
+              question,
+              answer,
+              tags,
+              resources,
+            } = item.item;
+            return (
+              <SearchResult
+                key={question}
+                question={question}
+                answer={answer}
+                tags={tags}
+                links={resources}
+              />
+            );
+          })}
 
         </main>
       </div>
     );
   }
 }
-
-const options = {
-  shouldSort: true,
-  threshold: 0.6,
-  location: 0,
-  distance: 100,
-  maxPatternLength: 32,
-  minMatchCharLength: 1,
-  keys: [
-    'question',
-    'answer.text',
-    'answer.code',
-  ],
-};
 
 export default Search;
