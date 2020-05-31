@@ -5,10 +5,29 @@ import classNames from 'classnames';
 import styles from './ToDoWithProgress.module.scss';
 
 class ToDoWithProgress extends React.Component {
+  constructor(props) {
+    super(props);
+    this.ref = React.createRef();
+    this.state = {
+      done: true,
+    };
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick() {
+    this.setState({done: !this.state.done});
+  }
+
   render() {
+    const {
+      done,
+    } = this.state;
+
     return (
       <div className={styles.grid}>
-        <div className={classNames(styles.box, styles.statusIcon)}>Check</div>
+        <div className={classNames(styles.box, styles.statusIcon)}>
+          <input type="checkbox" checked={done} onChange={(e) => {this.handleClick(e)}} />
+        </div>
         <div className={classNames(styles.box, styles.tag)}>Tag</div>
         <div className={classNames(styles.box, styles.task)}>Task</div>
         <div className={classNames(styles.box, styles.date)}>Dates</div>
