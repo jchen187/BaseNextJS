@@ -40,19 +40,28 @@ class ToDoDefault extends React.Component {
     } = this.state;
 
     const now = date.format(new Date(), pattern);
-    const futureDate = frequency !== 0 && date.format(date.addDays(new Date(), frequency), pattern);
-    const eventEntry = futureDate ? [ `Completed ${now} - Revisit ${futureDate}`] : [`Completed ${now}`];
 
-    const updatedHistory = _.concat(eventEntry, history);
+    if (frequency !== 0) {
+      const futureDate = date.format(date.addDays(new Date(), frequency), pattern);
+      const eventEntry = [ `Completed ${now} - Revisit ${futureDate}`];
+      const updatedHistory = _.concat(eventEntry, history);
 
-    this.setState({
-      history: updatedHistory,
-      dateRedo: futureDate,
-      dateCompleted: now,
-    });
+      this.setState({
+        history: updatedHistory,
+        dateRedo: futureDate,
+        dateCompleted: now,
+      });
 
-    if (futureDate) {
       alert(`The next time you have to do is ${futureDate}`);
+    } else {
+      const eventEntry = !isDone ? [`Completed ${now}`] : [ `Undo ${now}` ];
+      const updatedHistory = _.concat(eventEntry, history);
+
+      this.setState({
+        history: updatedHistory,
+        dateCompleted: now,
+        isDone: !isDone,
+      });
     }
 
     // TODO: should i prevent you from clicking it
