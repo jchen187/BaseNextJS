@@ -21,13 +21,14 @@ class ToDoDefault extends React.Component {
       dateCreated,
       dateRedo: '',
       frequency: 0,
-      notes: '',
+      notes: 'sample notes',
+      history: [ `Created ${dateCreated}` ],
     };
 
     this.handleClick = this.handleClick.bind(this);
     this.handleTaskNameChange = this.handleTaskNameChange.bind(this);
     this.handleFrequencySelect = this.handleFrequencySelect.bind(this);
-    this.updateDateRedo = this.updateDateRedo.bind(this);
+    this.getDateRedo = this.getDateRedo.bind(this);
   }
 
   handleClick() {
@@ -35,48 +36,80 @@ class ToDoDefault extends React.Component {
       isDone,
       dateCompleted,
       frequency,
+      history,
     } = this.state;
 
-    this.setState({isDone: !isDone});
+    const now = date.format(new Date(), pattern);
 
-    if (!dateCompleted && !isDone) {
-      const now = date.format(new Date(), pattern);
-      this.setState({dateCompleted: now});
-      this.updateDateRedo(now, frequency);
-    } else {
+    if (frequency !== 0) {
+      const futureDate = date.format(date.addDays(new Date(), frequency), pattern);
+      const eventEntry = [ `Completed ${now} - Revisit ${futureDate}`];
+      const updatedHistory = _.concat(eventEntry, history);
+
       this.setState({
-        dateCompleted: '',
-        dateRedo: '',
+        history: updatedHistory,
+        dateRedo: futureDate,
+        dateCompleted: now,
+      });
+
+      alert(`The next time you have to do is ${futureDate}`);
+    } else {
+      const eventEntry = !isDone ? [`Completed ${now}`] : [ `Undo ${now}` ];
+      const updatedHistory = _.concat(eventEntry, history);
+
+      this.setState({
+        history: updatedHistory,
+        dateCompleted: now,
+        isDone: !isDone,
       });
     }
+
+    // TODO: should i prevent you from clicking it
   }
 
   handleTaskNameChange(e) {
     this.setState({taskName: e.target.value});
   }
 
+  handleNotesChange(e) {
+    this.setState({notes: e.target.value});
+  }
+
   handleFrequencySelect(e) {
     // frequency is the same as the number of days till the you have to perform task again
-    const frequency = parseInt(e.target.value);
+    const newFrequency = parseInt(e.target.value);
 
     const {
       dateCompleted,
+      frequency,
+      history,
     } = this.state;
 
-    this.updateDateRedo(dateCompleted, frequency);
+    // change frequency
+    if (frequency !== newFrequency) {
+      let eventEntry =  [ `Updated frequency from ${frequency} to ${newFrequency}`];
+
+      if (dateCompleted) {
+        const dateRedo = this.getDateRedo(dateCompleted, newFrequency);
+        eventEntry = _.concat([`Revisit on ${dateRedo}`], eventEntry);
+      }
+      const updatedHistory = _.concat(eventEntry, history);
+
+      this.setState({
+        history: updatedHistory,
+        frequency: newFrequency,
+        dateRedo: this.getDateRedo(dateCompleted, newFrequency),
+      });
+    }
   }
 
-  updateDateRedo(dateCompleted, frequency) {
-    if (frequency !== 0) {
-      if (dateCompleted) {
-        const dateCompletedObject = date.parse(dateCompleted, pattern);
-        const dateRedo = date.format(date.addDays(dateCompletedObject, frequency), pattern);
-        this.setState({dateRedo, frequency})
-      } else {
-        this.setState({frequency});
-      }
+  getDateRedo(dateCompleted, frequency) {
+    if (dateCompleted && frequency !== 0) {
+      const dateCompletedObject = date.parse(dateCompleted, pattern);
+      const dateRedo = date.format(date.addDays(dateCompletedObject, frequency), pattern);
+      return dateRedo;
     } else {
-      this.setState({dateRedo: '', frequency: 0});
+      return '';
     }
   }
 
@@ -89,6 +122,7 @@ class ToDoDefault extends React.Component {
       isDone,
       notes,
       taskName,
+      history,
     } = this.state;
 
     const frequencyMap = {
@@ -103,10 +137,6 @@ class ToDoDefault extends React.Component {
       <div>
           <input type="checkbox" checked={isDone} onChange={(e) => {this.handleClick(e)}} />
           <input type="text" value={taskName} onInput={(e) => {this.handleTaskNameChange(e)}} />
-            <span>{taskName}</span>
-        <div className={classNames(styles.box, styles.tag)}>Tag</div>
-          <p>Date Created - {dateCreated}</p>
-          <p>Date Completed - {dateCompleted}</p>
             {/*
               Can we replace the values and make it int
               change the name and id
@@ -117,8 +147,17 @@ class ToDoDefault extends React.Component {
               <option value={v}>{k}</option>
             ))}
           </select>
-            <p>Next Time {dateRedo}</p>
-            <textarea name="message" rows="10" cols="30" value={notes} />
+            { dateRedo && (
+              <p>Due Date - {dateRedo}</p>
+            ) }
+          <p>History</p>
+          <ul>
+            { _.map(history, entry => (
+              <li>{entry}</li>
+            ))}
+          </ul>
+          <p>Notes</p>
+          <textarea name="message" rows="10" cols="30" onChange={(e) => {this.handleNotesChange(e)}} defaultValue={notes}></textarea>
       </div>
     );
   }
