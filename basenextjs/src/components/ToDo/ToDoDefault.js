@@ -89,7 +89,7 @@ class ToDoDefault extends React.Component {
     if (frequency !== newFrequency) {
       let eventEntry =  [ `Updated frequency from ${frequency} to ${newFrequency}`];
 
-      if (dateCompleted) {
+      if (dateCompleted && newFrequency !== 0) {
         const dateRedo = this.getDateRedo(dateCompleted, newFrequency);
         eventEntry = _.concat([`Revisit on ${dateRedo}`], eventEntry);
       }
@@ -99,6 +99,7 @@ class ToDoDefault extends React.Component {
         history: updatedHistory,
         frequency: newFrequency,
         dateRedo: this.getDateRedo(dateCompleted, newFrequency),
+        isDone: false,
       });
     }
   }
