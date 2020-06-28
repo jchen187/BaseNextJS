@@ -17,10 +17,11 @@ class Todo extends React.Component {
     this.state = {
       query: '',
       todoList: [],
+      toreadList: [],
     };
 
     this.updateSearch = this.updateSearch.bind(this);
-    this.addToDoItem = this.addToDoItem.bind(this);
+    this.addItem = this.addItem.bind(this);
     this.keyPressed = this.keyPressed.bind(this);
   }
 
@@ -32,33 +33,42 @@ class Todo extends React.Component {
   keyPressed(event) {
     if (event.key === "Enter") {
       console.log('You pressed Enter and will add to the Todo List');
-      this.addToDoItem(event);
+      this.addItem(event);
     }
   }
 
-  addToDoItem(event) {
+  addItem(event) {
     const {
       todoList,
+      toreadList,
     } = this.state;
 
-    const taskname = event.target.value;
-    const updatedToDoList = _.concat(todoList, [ taskname ] );
-    this.setState( {todoList: updatedToDoList } );
+    const id = event.target.id;
+
+    if (id === "addToDo") {
+      const taskname = event.target.value;
+      const updatedToDoList = _.concat(todoList, [ taskname ] );
+      this.setState( {todoList: updatedToDoList } );
+    } else if (id === "addToRead") {
+      const articlename = event.target.value;
+
+      // hit api
+      if (true) {
+        const updatedToReadList = _.concat(toreadList, [ articlename ] );
+        this.setState( {toreadList: updatedToReadList } );
+      } else {
+        alert('We could not hit the url. Please enter a valid url')
+      }
+    }
   }
 
-  // ToRead
-  addItem(event) {
-    const link = event.target.value;
-
-    // hit api
-  }
 
   render() {
     const {
       todoList,
+      toreadList,
     } = this.state;
 
-    console.log(todoList);
     /*
     const fuse = new Fuse(list, options); // "list" is the item array
     const displayResults = fuse.search(this.state.query);
@@ -76,13 +86,13 @@ class Todo extends React.Component {
         <main>
           {/*
           Default
+            - 15m expand and collapse to hide the bottom part - use accordion comp
+            - 30m createa component called todolist - you pass prop - todo or toread
             - if you try to use react to manage the todoList, it wouldnt work because if you update the children todo, the todoList wouldnt know
-            - add border to show distinction between items
-            - expand and collapse to hide the bottom part
-            - use redux
+            - 1h use redux
           Advanced
           ToRead
-            - Hit API
+            - 1h create API - is it valid url? if not setalert
 
           Search the task
           Check Todo
@@ -103,7 +113,8 @@ class Todo extends React.Component {
               className="input"
               placeholder="What would you like to add?"
               onChange={this.updateSearch}
-              onKeyPress={this.keyPressed}
+              onKeyDown={this.keyPressed}
+              id="addToDo"
             />
           </div>
 
@@ -116,10 +127,21 @@ class Todo extends React.Component {
 
           <h2>ToRead - metasccraper or urlmetadata</h2>
           <div className="inputContainer">
-            <input type="text" className="input" placeholder="What article link?" onChange={this.updateSearch} />
+            <input type="text"
+              className="input"
+              placeholder="What article link?"
+              onChange={this.updateSearch}
+              onKeyDown={this.keyPressed}
+              key="addToRead"
+              id="addToRead"
+            />
           </div>
 
-          <ToRead />
+          <SortableList>
+            { _.map(toreadList, toreadItem => (
+              <ToRead key={toreadItem} title={toreadItem} />
+            ))}
+          </SortableList>
 
             {/*
           <h2>Progress</h2>
