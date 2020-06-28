@@ -23,6 +23,7 @@ class Todo extends React.Component {
     this.updateSearch = this.updateSearch.bind(this);
     this.addItem = this.addItem.bind(this);
     this.keyPressed = this.keyPressed.bind(this);
+    this.clearEventValue = this.clearEventValue.bind(this);
   }
 
   updateSearch(event) {
@@ -34,6 +35,7 @@ class Todo extends React.Component {
     if (event.key === "Enter") {
       console.log('You pressed Enter and will add to the Todo List');
       this.addItem(event);
+      this.clearEventValue(event);
     }
   }
 
@@ -60,6 +62,10 @@ class Todo extends React.Component {
         alert('We could not hit the url. Please enter a valid url')
       }
     }
+  }
+
+  clearEventValue(event) {
+      event.target.value = '';
   }
 
 
@@ -90,6 +96,7 @@ class Todo extends React.Component {
             - 30m createa component called todolist - you pass prop - todo or toread
             - if you try to use react to manage the todoList, it wouldnt work because if you update the children todo, the todoList wouldnt know
             - 1h use redux
+            - add multiple of the same list - does it work
           Advanced
           ToRead
             - 1h create API - is it valid url? if not setalert
