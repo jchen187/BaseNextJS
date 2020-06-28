@@ -4,6 +4,7 @@ import React from 'react';
 import Head from 'next/head';
 
 import { SearchResult } from '../../components/SearchResult';
+import { SortableList } from '../../components/SortableList';
 import {
   ToDoDefault,
   ToDoWithProgress,
@@ -15,8 +16,12 @@ class Todo extends React.Component {
     super(props);
     this.state = {
       query: '',
+      todoList: [],
     };
+
     this.updateSearch = this.updateSearch.bind(this);
+    this.addToDoItem = this.addToDoItem.bind(this);
+    this.keyPressed = this.keyPressed.bind(this);
   }
 
   updateSearch(event) {
@@ -24,7 +29,36 @@ class Todo extends React.Component {
     // console.log(event.target.value);
   }
 
+  keyPressed(event) {
+    if (event.key === "Enter") {
+      console.log('You pressed Enter and will add to the Todo List');
+      this.addToDoItem(event);
+    }
+  }
+
+  addToDoItem(event) {
+    const {
+      todoList,
+    } = this.state;
+
+    const taskname = event.target.value;
+    const updatedToDoList = _.concat(todoList, [ taskname ] );
+    this.setState( {todoList: updatedToDoList } );
+  }
+
+  // ToRead
+  addItem(event) {
+    const link = event.target.value;
+
+    // hit api
+  }
+
   render() {
+    const {
+      todoList,
+    } = this.state;
+
+    console.log(todoList);
     /*
     const fuse = new Fuse(list, options); // "list" is the item array
     const displayResults = fuse.search(this.state.query);
@@ -40,39 +74,57 @@ class Todo extends React.Component {
         </Head>
 
         <main>
-          <h1 className="title">
-            Types of Todo
-          </h1>
-          <ul className="description">
-            <li>Done - Simple</li>
-            <li>Done - Recurring</li>
-            <li>Advanced</li>
-            <li>ToRead</li>
-          </ul>
-          <h1 className="title">
-            Todo
-          </h1>
-          <ul className="description">
-            <li>Search the task</li>
-            <li>Check Todo</li>
-            <li>Add Todo</li>
-            <li>Remove Todo</li>
-            <li>Edit Todo</li>
-          </ul>
+          {/*
+          Default
+            - if you try to use react to manage the todoList, it wouldnt work because if you update the children todo, the todoList wouldnt know
+            - add border to show distinction between items
+            - expand and collapse to hide the bottom part
+            - use redux
+          Advanced
+          ToRead
+            - Hit API
 
-          <div className="inputContainer">
-            <input type="text" className="input" placeholder="What task are you looking for?" onChange={this.updateSearch} />
-          </div>
+          Search the task
+          Check Todo
+          Add Todo
+          Remove Todo
+          Edit Todo
+          */}
 
           <h2>Default </h2>
-          <ToDoDefault />
+            {/*
+            <input type="radio" id="male" name="gender" value="male"/>
+              <label for="male">Add Item</label><br/>
+            <input type="radio" id="female" name="gender" value="female"/>
+              <label for="female">Search</label><br/>
+              */}
+          <div className="inputContainer">
+            <input type="text"
+              className="input"
+              placeholder="What would you like to add?"
+              onChange={this.updateSearch}
+              onKeyPress={this.keyPressed}
+            />
+          </div>
+
+          <SortableList>
+            { _.map(todoList, todoItem => (
+              <ToDoDefault key={todoItem} taskName={todoItem} />
+            ))}
+          </SortableList>
+
 
           <h2>ToRead - metasccraper or urlmetadata</h2>
+          <div className="inputContainer">
+            <input type="text" className="input" placeholder="What article link?" onChange={this.updateSearch} />
+          </div>
+
           <ToRead />
 
+            {/*
           <h2>Progress</h2>
           <ToDoWithProgress />
-
+          */}
 
         </main>
       </div>

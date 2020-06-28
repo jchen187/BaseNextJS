@@ -4,19 +4,23 @@ import classNames from 'classnames';
 import date from 'date-and-time';
 import _ from 'lodash';
 
-import styles from './ToDoWithProgress.module.scss';
+import styles from './ToDoDefault.module.scss';
 
 const pattern = date.compile('MMM D, YYYY h:mm:ssA');
 
 class ToDoDefault extends React.Component {
   constructor(props) {
     super(props);
+    const {
+      taskName,
+    } = props;
+
     const dateCreated = date.format(new Date(), pattern);
 
     this.ref = React.createRef();
     this.state = {
       isDone: false,
-      taskName: 'Temp Task Name',
+      taskName,
       dateCompleted: '',
       dateCreated,
       dateRedo: '',
@@ -135,22 +139,25 @@ class ToDoDefault extends React.Component {
     }
 
     return (
-      <div>
+      <div className={styles.todo}>
+        <div className={styles.todoHeader}>
           <input type="checkbox" checked={isDone} onChange={(e) => {this.handleClick(e)}} />
           <input type="text" value={taskName} onInput={(e) => {this.handleTaskNameChange(e)}} />
-            {/*
+              {/*
               Can we replace the values and make it int
               change the name and id
             <option value="0">One Time</option>
-                */}
+            */}
           <select id="cars" name="cars" onChange={(e) => {this.handleFrequencySelect(e)}}>
             { _.map(frequencyMap, (k, v) => (
               <option value={v}>{k}</option>
             ))}
           </select>
-            { dateRedo && (
-              <p>Due Date - {dateRedo}</p>
-            ) }
+        </div>
+        <div className={styles.todoCollapsibleSection}>
+          { dateRedo && (
+            <p>Due Date - {dateRedo}</p>
+          ) }
           <p>History</p>
           <ul>
             { _.map(history, entry => (
@@ -159,6 +166,7 @@ class ToDoDefault extends React.Component {
           </ul>
           <p>Notes</p>
           <textarea name="message" rows="10" cols="30" onChange={(e) => {this.handleNotesChange(e)}} defaultValue={notes}></textarea>
+        </div>
       </div>
     );
   }
@@ -168,6 +176,7 @@ ToDoDefault.propTypes = {
 };
 
 ToDoDefault.defaultProps = {
+  taskName: 'Temp Task Name',
 };
 
 export default ToDoDefault;
