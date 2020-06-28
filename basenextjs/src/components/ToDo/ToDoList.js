@@ -66,6 +66,7 @@ class ToDoList extends React.Component {
     const {
       component,
       title,
+      placeholder,
     } = this.props;
 
     const Component = component;
@@ -77,15 +78,15 @@ class ToDoList extends React.Component {
       <div className="inputContainer">
         <input type="text"
           className="input"
-          placeholder="What would you like to add?"
+          placeholder={placeholder}
           onChange={this.updateSearch}
           onKeyDown={this.keyPressed}
           id={id}
         />
       </div>
-      <SortableList>
+      <SortableList id={title}>
         { _.map(list, todoItem => (
-          <ToDoDefault key={todoItem} taskName={todoItem} title={todoItem} />
+          <Component key={todoItem} taskName={todoItem} title={todoItem}/>
         ))}
       </SortableList>
       </>
@@ -99,6 +100,7 @@ ToDoList.propTypes = {
 
 ToDoList.defaultProps = {
   component: ToDoDefault,
+  placeholder: "What would you like to add?",
 };
 
 export default ToDoList;
