@@ -9,6 +9,7 @@ import {
   ToDoDefault,
   ToDoWithProgress,
   ToRead,
+  ToDoList,
 } from '../../components/ToDo';
 
 class Todo extends React.Component {
@@ -92,11 +93,11 @@ class Todo extends React.Component {
         <main>
           {/*
           Default
-            - 15m expand and collapse to hide the bottom part - use accordion comp
             - 30m createa component called todolist - you pass prop - todo or toread
             - if you try to use react to manage the todoList, it wouldnt work because if you update the children todo, the todoList wouldnt know
             - 1h use redux
             - add multiple of the same list - does it work
+            - 10m can we prevent the accordion from expanding if you click the header section
           Advanced
           ToRead
             - 1h create API - is it valid url? if not setalert
@@ -150,6 +151,7 @@ class Todo extends React.Component {
             ))}
           </SortableList>
 
+            <ToDoList title="recurring" component={ToRead}/>
             {/*
           <h2>Progress</h2>
           <ToDoWithProgress />
