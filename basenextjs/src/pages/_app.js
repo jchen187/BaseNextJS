@@ -31,6 +31,8 @@ import 'prismjs/plugins/command-line/prism-command-line.css';
 
 import '../styles/prism-override.css';
 
+import 'rc-collapse/assets/index.css';
+
 // This default export is required in a new `pages/_app.js` file.
 export default function MyApp({ Component, pageProps }) {
   return <Component {...pageProps} />;

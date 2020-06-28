@@ -4,6 +4,8 @@ import classNames from 'classnames';
 import date from 'date-and-time';
 import _ from 'lodash';
 
+import Accordion from '../Accordion';
+
 import styles from './ToDoDefault.module.scss';
 
 const pattern = date.compile('MMM D, YYYY h:mm:ssA');
@@ -138,8 +140,7 @@ class ToDoDefault extends React.Component {
       30: 'Every 1 Month',
     }
 
-    return (
-      <div className={styles.todo}>
+    const header = (
         <div className={styles.todoHeader}>
           <input type="checkbox" checked={isDone} onChange={(e) => {this.handleClick(e)}} />
           <input type="text" value={taskName} onInput={(e) => {this.handleTaskNameChange(e)}} />
@@ -154,6 +155,9 @@ class ToDoDefault extends React.Component {
             ))}
           </select>
         </div>
+    );
+
+    const content = (
         <div className={styles.todoCollapsibleSection}>
           { dateRedo && (
             <p>Due Date - {dateRedo}</p>
@@ -167,6 +171,11 @@ class ToDoDefault extends React.Component {
           <p>Notes</p>
           <textarea name="message" rows="10" cols="30" onChange={(e) => {this.handleNotesChange(e)}} defaultValue={notes}></textarea>
         </div>
+    );
+
+    return (
+      <div className={styles.todo}>
+        <Accordion header={header} content={content}/>
       </div>
     );
   }
