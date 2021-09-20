@@ -23,7 +23,7 @@
     "lodash": "^4.17.15",
     "next": "^10.0.6",
     "node-fetch": "^2.6.0",
-    "prismjs": "^1.19.0",
+    "prismjs": "^1.25.0",
     "prop-types": "^15.7.2",
     "rc-collapse": "^1.11.8",
     "react": "16.13.1",
